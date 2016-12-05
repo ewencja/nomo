@@ -78,7 +78,7 @@ end
 #
 # Returns a hash with key=>properties of infobox
 def extract_info_box(body)
-  text = body[/{{Infobox given name[0-9]*(.*?)}}/m, 1]
+  text = body[/{{Infobox given name[0-9]*(.*?)^}}/m, 1]
   parse_infobox(text)
 end
 
@@ -94,11 +94,11 @@ end
 def extract_components(body)
 
   # Wiki redirect pages begin with "#REDIRECT"
-  is_redirect = (/^#REDIRECT.*/m =~ body) === 0;
+  is_redirect = (/^#REDIRECT.*/m =~ body) == 0;
 
   # Extract and parse infobox, remove after
   infobox = extract_info_box(body)
-  body.gsub!(/{{Infobox.*?}}/m, '')
+  body.gsub!(/{{Infobox.*?^}}/m, '')
 
   return is_redirect, infobox, body
 
@@ -115,7 +115,7 @@ def parse_pages(doc)
 
   doc.xpath('//xmlns:page').each do | page |
 
-    name = page.xpath('xmlns:title').text
+    name = page.xpath('xmlns:title').text.gsub(/\s.*/, '')
     body = page.xpath('xmlns:revision/xmlns:text').text
     is_redirect, infobox, body = extract_components(body)
 
