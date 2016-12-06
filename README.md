@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## Installation
 
 1. `gem install nokogiri` (Required for XML parsing)
@@ -120,29 +119,3 @@ A good way to investigate this is to write a regular expression what what you wo
 
 ### Step 4: Write and import data
 Write cool code, yo.
-=======
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
->>>>>>> Initial commit

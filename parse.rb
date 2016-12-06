@@ -82,6 +82,61 @@ def extract_info_box(body)
   parse_infobox(text)
 end
 
+def is_gender(s)
+  return ['Feminine', 'Masculine', 'Unisex'].include?(s);
+end
+
+# Parse category from wiki markup into origin string
+#
+# text - The String containing category wiki markup
+#
+# Returns origin, gender
+def parse_category(text)
+
+  if match = text.match(/^\[\[Category\:(.*?) (.*?) given names\]\]$/)
+
+    origin, gender = match.captures
+    return origin, gender
+
+  elsif match = text.match(/^\[\[Category\:(.*?) given names\]\]$/)
+
+    match = match.captures[0]
+
+    if is_gender(match)
+      return nil, match
+    else
+      return match, nil
+    end
+
+  end
+
+end
+
+# Extract and parse categories wiki markup into list
+#
+# body - The String containing wiki page content
+#
+# Returns list of origins, genders
+def extract_origins_genders(body)
+  origins = Array.new
+  genders = Array.new
+  matches = body.scan(/\[\[Category\:.* given names\]\]/)
+  matches.each do |match|
+
+    origin, gender = parse_category(match)
+
+    if !origin.nil?
+      origins << origin
+    end
+
+    if !gender.nil?
+      genders << gender
+    end
+
+  end
+  return origins.uniq, genders.uniq
+end
+
 
 # Extract information from wiki page
 #
@@ -100,7 +155,10 @@ def extract_components(body)
   infobox = extract_info_box(body)
   body.gsub!(/{{Infobox.*?^}}/m, '')
 
-  return is_redirect, infobox, body
+  # Extract categories
+  origins, genders = extract_origins_genders(body)
+
+  return is_redirect, infobox, origins, genders, body
 
 end
 
@@ -115,9 +173,12 @@ def parse_pages(doc)
 
   doc.xpath('//xmlns:page').each do | page |
 
-    name = page.xpath('xmlns:title').text.gsub(/\s.*/, '')
+    name = page.xpath('xmlns:title').text.gsub(/\s\(.*/, '')
     body = page.xpath('xmlns:revision/xmlns:text').text
-    is_redirect, infobox, body = extract_components(body)
+
+    is_redirect, infobox, origins, genders, body = extract_components(body)
+
+    puts "\n#{name} #{origins} #{genders}"
 
     name_data = infobox;
     name_data['name'] = name
