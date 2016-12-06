@@ -2,8 +2,6 @@
 
 require 'nokogiri'
 
-
-
 # Iron out different spellings of infobox keys
 #
 # key - The String to be cleansed
