@@ -1,2 +1,3 @@
 class NameController < ApplicationController
+
 end
