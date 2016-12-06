@@ -1,8 +1,13 @@
 class PagesController < ApplicationController
   def home
+    @result = find_gender
   end
 
-# this is where soundex controller comes
-  def
+  def find_gender
+    @masculine = Name.where(gender: "masculine")
   end
+
+
+
+
 end
