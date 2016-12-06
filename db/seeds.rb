@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+name = [
+  {
+  name: "Max",
+  gender: "masculine"
+},
+{
+  name: "Anna",
+  gender: "feminine"
+}
+]
+name.each do |params|
+  n = Name.create!(params)
+end
