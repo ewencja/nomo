@@ -5,17 +5,33 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# require the file that you created
+# create variable
 
-name = [
-  {
-  name: "Max",
-  gender: "masculine"
-},
-{
-  name: "Anna",
-  gender: "feminine"
-}
-]
-name.each do |params|
+# results = parsing()
+
+require_relative '../parse'
+
+names = import_names()
+
+Rails.logger.debug(names.size)
+
+# name = [
+#   {
+#   name: "Max",
+#   gender: "masculine"
+# },
+# {
+#   name: "Anna",
+#   gender: "feminine"
+# }
+# ]
+names.each do |single_name|
+  # puts single_name['name']
+  params = {
+    name: single_name['name'],
+    # origin: single_name['origin'],
+    gender: single_name['gender']
+  }
   n = Name.create!(params)
 end

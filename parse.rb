@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require 'nokogiri'
 
 # Iron out different spellings of infobox keys
@@ -176,7 +174,7 @@ def parse_pages(doc)
 
     is_redirect, infobox, origins, genders, body = extract_components(body)
 
-    puts "\n#{name} #{origins} #{genders}"
+    # puts "\n#{name} #{origins} #{genders}"
 
     name_data = infobox;
     name_data['name'] = name
@@ -189,30 +187,16 @@ def parse_pages(doc)
 
   puts "Extracted #{names.size} names"
 
+  return names.values
+
 end
-
-
 
 #################################################
 # Initiate import
 #################################################
 
-if ARGV[0].nil? then
-
-  # User didn't supply input filename
-  puts "ERROR: Please enter path to XML Wikipedia Category export"
-  puts exit 1
-
-elsif !File.file?(ARGV[0]) then
-
-  # Input file does not exist
-  puts "ERROR: File \"#{ARGV[0]}\" not found"
-  puts exit 2
-
-else
-
-  # Read and process input file
-  doc = Nokogiri::XML(File.read(ARGV[0]));
-  parse_pages(doc)
-
+def import_names
+  path = '/Users/ewa/code/ewencja/nomo/Wikipedia-20161205152210.xml'
+  doc = Nokogiri::XML(File.read(path))
+  return parse_pages(doc)
 end
