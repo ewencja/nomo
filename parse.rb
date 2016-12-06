@@ -108,12 +108,28 @@ def parse_category(text)
 
 end
 
+
+def is_known_gender?(gender)
+  return ['masculine', 'feminine', 'unisex'].include?(gender)
+end
+
+
+def simplify_genders(genders)
+
+  if genders.include?('masculine') && genders.include?('feminine')
+    return 'unisex'
+  end
+
+  return genders[0];
+
+end
+
 # Extract and parse categories wiki markup into list
 #
 # body - The String containing wiki page content
 #
 # Returns list of origins, genders
-def extract_origins_genders(body)
+def extract_origins_gender(body)
   origins = Array.new
   genders = Array.new
   matches = body.scan(/\[\[Category\:.* given names\]\]/)
@@ -125,12 +141,15 @@ def extract_origins_genders(body)
       origins << origin
     end
 
-    if !gender.nil?
-      genders << gender
+    if !gender.nil? && is_known_gender?(gender.downcase)
+      genders << gender.downcase
     end
 
   end
-  return origins.uniq, genders.uniq
+
+  gender = simplify_genders genders.uniq
+
+  return origins.uniq, gender
 end
 
 
@@ -152,9 +171,9 @@ def extract_components(body)
   body.gsub!(/{{Infobox.*?^}}/m, '')
 
   # Extract categories
-  origins, genders = extract_origins_genders(body)
+  origins, gender = extract_origins_gender(body)
 
-  return is_redirect, infobox, origins, genders, body
+  return is_redirect, infobox, origins, gender, body
 
 end
 
@@ -172,7 +191,7 @@ def parse_pages(doc)
     name = page.xpath('xmlns:title').text.gsub(/\s\(.*/, '')
     body = page.xpath('xmlns:revision/xmlns:text').text
 
-    is_redirect, infobox, origins, genders, body = extract_components(body)
+    is_redirect, infobox, origins, gender, body = extract_components(body)
 
     # puts "\n#{name} #{origins} #{genders}"
 
@@ -180,6 +199,8 @@ def parse_pages(doc)
     name_data['name'] = name
     name_data['is_redirect'] = is_redirect
     name_data['body'] = body
+    name_data['origins'] = origins
+    name_data['gender'] = gender
 
     names[name] = name_data
 
