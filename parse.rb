@@ -124,6 +124,10 @@ def simplify_genders(genders)
 
 end
 
+def simplify_origin(origin)
+  return origin.gsub(/\-.*/, '')
+end
+
 # Extract and parse categories wiki markup into list
 #
 # body - The String containing wiki page content
@@ -138,7 +142,7 @@ def extract_origins_gender(body)
     origin, gender = parse_category(match)
 
     if !origin.nil?
-      origins << origin
+      origins << simplify_origin(origin)
     end
 
     if !gender.nil? && is_known_gender?(gender.downcase)
@@ -202,7 +206,9 @@ def parse_pages(doc)
     name_data['origins'] = origins
     name_data['gender'] = gender
 
-    names[name] = name_data
+    if !name.start_with?('Category')
+      names[name] = name_data
+    end
 
   end
 

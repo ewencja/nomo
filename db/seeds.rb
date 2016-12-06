@@ -1,37 +1,66 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-# require the file that you created
-# create variable
-
-# results = parsing()
-
+require 'text'
 require_relative '../parse'
 
-names = import_names()
+Name.destroy_all
+Origin.destroy_all
 
-Rails.logger.debug(names.size)
+names = import_names() # [{ name: Ewa, origins: [French, Polish], ... }]
 
-# name = [
-#   {
+# Extract origins into string array
+origins = Array.new
+names.each do |name|
+  name['origins'].each do |origin|
+    origins << origin
+  end
+end
+origins.uniq!
+
+# Create origins in database
+origin_lookup = Hash.new # { 'French': string => [[French]]: Origin }
+origins.each do |origin|
+  entry = Origin.create!({ origin: origin })
+  origin_lookup[origin] = entry
+end
+
+# Create names in database
+names.each do |name|
+  name['origins'] # ['French', 'Russian']
+  origins = name['origins'].map do |origin|
+    origin_lookup[origin]
+  end
+  Name.create({
+    name: name['name'],
+    gender: name['gender'],
+    soundex: Text::Soundex.soundex(name['name']),
+    metaphone: Text::Metaphone.metaphone(name['name']),
+    double_metaphone: Text::Metaphone.double_metaphone(name['name']),
+    origin: origins
+    })
+end
+
+
+# french = Origin.create!({ origin: 'French' })
+# russian = Origin.create!({ origin: 'Russian' })
+#
+# names = [{
 #   name: "Max",
-#   gender: "masculine"
+#   gender: "masculine",
+#   origin: [french, russian]
 # },
 # {
 #   name: "Anna",
-#   gender: "feminine"
-# }
-# ]
-names.each do |single_name|
-  # puts single_name['name']
-  params = {
-    name: single_name['name'],
-    # origin: single_name['origin'],
-    gender: single_name['gender']
-  }
-  n = Name.create!(params)
-end
+#   gender: "feminine",
+#   origin: [french]
+# }]
+#
+# # Name.destroy_all
+#
+# names.each do |name|
+#   # puts single_name['name']
+#   # params = {
+#   #   name: single_name['name'],
+#   #   # origin: single_name['origin'],
+#   #   gender: single_name['gender']
+#   # }
+#   Name.create!(name)
+# end
