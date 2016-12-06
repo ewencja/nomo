@@ -15,6 +15,14 @@ ActiveRecord::Schema.define(version: 20161206141838) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "genders", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "name_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name_id"], name: "index_genders_on_name_id", using: :btree
+  end
+
   create_table "names", force: :cascade do |t|
     t.string   "name"
     t.string   "origin"
@@ -29,4 +37,5 @@ ActiveRecord::Schema.define(version: 20161206141838) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "genders", "names"
 end
