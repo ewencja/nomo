@@ -223,7 +223,7 @@ end
 #################################################
 
 def import_names
-  path = '/Users/ewa/code/ewencja/nomo/Wikipedia-20161205152210.xml'
+  path = './Wikipedia-20161205152210.xml'
   doc = Nokogiri::XML(File.read(path))
   return parse_pages(doc)
 end
