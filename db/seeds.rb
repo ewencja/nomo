@@ -1,5 +1,6 @@
 require 'text'
 require_relative '../parse'
+require_relative '../parse_US_data'
 
 Name.destroy_all
 Origin.destroy_all
@@ -38,29 +39,21 @@ names.each do |name|
     })
 end
 
+# results = import_US_names
+#
+# results[0].each do |result|
+#   if names.include? result
+#     result
 
-# french = Origin.create!({ origin: 'French' })
-# russian = Origin.create!({ origin: 'Russian' })
-#
-# names = [{
-#   name: "Max",
-#   gender: "masculine",
-#   origin: [french, russian]
-# },
-# {
-#   name: "Anna",
-#   gender: "feminine",
-#   origin: [french]
-# }]
-#
-# # Name.destroy_all
-#
+
+# Name.destroy_all
+
 # names.each do |name|
-#   # puts single_name['name']
-#   # params = {
-#   #   name: single_name['name'],
-#   #   # origin: single_name['origin'],
-#   #   gender: single_name['gender']
-#   # }
+  # puts single_name['name']
+  # params = {
+  #   name: single_name['name'],
+  #   # origin: single_name['origin'],
+  #   gender: single_name['gender']
+  # }
 #   Name.create!(name)
 # end
