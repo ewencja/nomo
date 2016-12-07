@@ -1,45 +1,84 @@
-<% @result.each do |n|  %>
-<p><%= n.name %></p>
-<%end  %>
+<!--<#% @result.each do |n|  %>
+<p><#%= n.name %></p>
+<#%end  %>-->
 
 
+<div class="background_image" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://static.pexels.com/photos/172256/pexels-photo-172256.jpeg');">
+  <div class="banner-content">
+  <div class="container text-center">
+    <div class="row">
+      <h1> Let's find your baby's name</h1>
 
-<div class="container text-center">
-  <div class="row">
-    <div class="col-md-6 col-offset-3">
-      <h1>Categories Page</h1>
-      Please select your Categories:
+      <br>
+      <!-- GENDER -->
+      <div class="col-sx-6 col-offset-3">
+        <h2>Will your baby be a girl or boy?</h2>
+        <form action="gender">
+          <input type="radio" name="gender" value="masculine">Boy<br>
+          <input type="radio" name="gender" value="Feminine">Girl
+        </form>
+      </div>
 
-      <!-- <label class="check_boxes optional control-label">Gender</label>
-      <label class="checkbox">
-        <div class="controls">
-          <label class="checkbox">
-          <input class="check_boxes optional" id="program_origin_english" name="program[origin][]" type="checkbox" value="English" />English</label>
+      <!-- PARENT ORIGIN -->
+      <div class="col-sx-6 col-offset-3">
+        <h2>What is your country of origin?</h2>
+        <p>
+        <select multiple>
+          <option value="German">German</option>
+          <option value="English">English</option>
+          <option value="Italian">Italian</option>
+          <option value="Spanish">Spanish</option>
+          <option value="Dutch">Dutch</option>
+          <option value="Danish">Danish</option>
+          <option value="Norwegian">Norwegian</option>
+          <option value="Polish">Polish</option>
+          <option value="English">English</option>
+        </select>
+        </p>
+        <input type="submit" value="send">
+      </div>
 
-          <label class="checkbox">
-          <input class="check_boxes optional" id="program_origin_portuguese" name="program[origin][]" type="checkbox" value="Portuguese" />Portuguese</label> -->
+      <!-- BABY ORIGIN -->
+      <div class="col-sx-6 col-offset-3">
+        <h2>Where is your baby most likely to grow up?</h2>
+        <p>
+        <select>
+          <option value="German">German</option>
+          <option value="English">English</option>
+          <option value="Italian">Italian</option>
+          <option value="Spanish">Spanish</option>
+          <option value="Dutch">Dutch</option>
+          <option value="Danish">Danish</option>
+          <option value="Norwegian">Norwegian</option>
+          <option value="Polish">Polish</option>
+          <option value="English">English</option>
+        </select>
+        </p>
+      </div>
 
+      <!-- FIRST LETTER -->
+<!--
+        <div class="col-sx-6 col-offset-3">
+          <h2>Should your baby's name start with a certain letter?</h2>
+          <form action="letter">
+            <input type="text" name="first letter"
+            pattern="[A-Za-z]{1}" title="first letter">
+            <input type="submit">
+          </form>
+        </div> -->
 
-      <label class="check_boxes optional control-label">Origin</label>
-      <label class="checkbox">
-        <div class="controls">
-          <label class="checkbox">
-          <input class="check_boxes optional" id="program_origin_english" name="program[origin][]" type="checkbox" value="English" />English</label>
-
-          <label class="checkbox">
-          <input class="check_boxes optional" id="program_origin_portuguese" name="program[origin][]" type="checkbox" value="Portuguese" />Portuguese</label>
-
-          <label class="checkbox">
-          <input class="check_boxes optional" id="program_origin_italian" name="program[origin][]" type="checkbox" value="Italian" />Italian</label>
-
-          <label class="checkbox">
-          <input class="check_boxes optional" id="program_origin_german" name="program[origin][]" type="checkbox" value="German" />German</label>
-
-          <label class="checkbox">
-          <input class="check_boxes optional" id="program_origin_polish" name="program[origin][]" type="checkbox" value="Polish" />Polish</label>
-          <input name="program[languages][]" type="hidden" value="" />
+        <!-- LENGTH -->
+        <div class="col-sx-6 col-offset-3">
+          <h2>How long should the name be?</h2>
+          <form action="length">
+            <input type="checkbox" name="length" value="short">short<br>
+            <input type="checkbox" name="length" value="medium">medium<br>
+            <input type="checkbox" name="length" value="long">long<br>
+          </form>
         </div>
-      <!-- <h2>First Letter</h2> -->
+
+      </div>
     </div>
   </div>
-</div>
+
+
