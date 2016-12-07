@@ -3,53 +3,61 @@
 <#%end  %>-->
 
 
+<div class="background_image" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://static.pexels.com/photos/172256/pexels-photo-172256.jpeg');">
+  <div class="banner-content">
+  <div class="container text-center">
+    <div class="row">
+      <h1> Let's find your baby's name</h1>
 
-<div class="container text-center">
-  <div class="row">
-    <h1> Let's find your baby's name</h1>
+      <br>
+      <!-- GENDER -->
+      <div class="col-sx-6 col-offset-3">
+        <h2>Will your baby be a girl or boy?</h2>
+        <form action="gender">
+          <input type="radio" name="gender" value="masculine">Boy<br>
+          <input type="radio" name="gender" value="Feminine">Girl
+        </form>
+      </div>
 
-    <br>
-    <!-- GENDER (todo: select only one)-->
-    <div class="col-sx-6 col-offset-3">
-      <h2>Will your baby be a girl or boy?</h2>
-      <form action="gender">
-        <input type="radio" name="gender" value="masculine">Boy<br>
-        <input type="radio" name="gender" value="Feminine">Girl
-      </form>
-    </div>
-
-    <!-- PARENT ORIGIN -->
-    <div class="col-sx-6 col-offset-3">
-      <h2>What is your country of origin?</h2>
-          <select>
-            <option value="German">German</option>
-            <option value="English">English</option>
-            <option value="Italian">Italian</option>
-            <option value="Spanish">Spanish</option>
-            <option value="Hungarian">Hungarian</option>
-            <option value="Danish">Danish</option>
-            <option value="Norwegian">Norwegian</option>
-          </select>
+      <!-- PARENT ORIGIN -->
+      <div class="col-sx-6 col-offset-3">
+        <h2>What is your country of origin?</h2>
+        <p>
+        <select multiple>
+          <option value="German">German</option>
+          <option value="English">English</option>
+          <option value="Italian">Italian</option>
+          <option value="Spanish">Spanish</option>
+          <option value="Dutch">Dutch</option>
+          <option value="Danish">Danish</option>
+          <option value="Norwegian">Norwegian</option>
+          <option value="Polish">Polish</option>
+          <option value="English">English</option>
+        </select>
+        </p>
+        <input type="submit" value="send">
       </div>
 
       <!-- BABY ORIGIN -->
-
       <div class="col-sx-6 col-offset-3">
         <h2>Where is your baby most likely to grow up?</h2>
-                   <select>
-              <option value="German">German</option>
-              <option value="English">English</option>
-              <option value="Italian">Italian</option>
-              <option value="Spanish">Spanish</option>
-              <option value="Hungarian">Hungarian</option>
-              <option value="Danish">Danish</option>
-              <option value="Norwegian">Norwegian</option>
-            </select>
-        </div>
+        <p>
+        <select>
+          <option value="German">German</option>
+          <option value="English">English</option>
+          <option value="Italian">Italian</option>
+          <option value="Spanish">Spanish</option>
+          <option value="Dutch">Dutch</option>
+          <option value="Danish">Danish</option>
+          <option value="Norwegian">Norwegian</option>
+          <option value="Polish">Polish</option>
+          <option value="English">English</option>
+        </select>
+        </p>
+      </div>
 
-        <!-- FIRST LETTER -->
-
-
+      <!-- FIRST LETTER -->
+<!--
         <div class="col-sx-6 col-offset-3">
           <h2>Should your baby's name start with a certain letter?</h2>
           <form action="letter">
@@ -57,24 +65,20 @@
             pattern="[A-Za-z]{1}" title="first letter">
             <input type="submit">
           </form>
-        </div>
+        </div> -->
 
         <!-- LENGTH -->
-
         <div class="col-sx-6 col-offset-3">
           <h2>How long should the name be?</h2>
-            <p>
-            <form action="length">
-              <input type="checkbox" name="length" value="short">short<br>
-              <input type="checkbox" name="length" value="medium">medium<br>
-              <input type="checkbox" name="length" value="long">long<br>
-            </form>
-          </p>
+          <form action="length">
+            <input type="checkbox" name="length" value="short">short<br>
+            <input type="checkbox" name="length" value="medium">medium<br>
+            <input type="checkbox" name="length" value="long">long<br>
+          </form>
         </div>
-
 
       </div>
     </div>
-
+  </div>
 
 

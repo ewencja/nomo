@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+// Your CSS
+
+// Components
+@import "components/button";
+
+//Pages
+@import "pages";
+
+
