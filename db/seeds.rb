@@ -1,15 +1,16 @@
 require 'text'
-require_relative '../parse'
-require_relative '../parse_US_data'
+require_relative 'parse_wiki'
+require_relative 'parse_us_census'
 
 Name.destroy_all
 Origin.destroy_all
 
-names = import_names() # [{ name: Ewa, origins: [French, Polish], ... }]
+wiki_names = parse_wiki(ARGV[1]) # [{ name: Ewa, origins: [French, Polish], ... }]
+us_census_names = import_us_census(ARGV[2])
 
 # Extract origins into string array
 origins = Array.new
-names.each do |name|
+wiki_names.each do |name|
   name['origins'].each do |origin|
     origins << origin
   end
@@ -23,8 +24,18 @@ origins.each do |origin|
   origin_lookup[origin] = entry
 end
 
+# Add frequencies to names
+us_census_names.each do |us_census_name|
+  wiki_name = wiki_names.find{ |wiki_name|
+    wiki_name['name'] == us_census_name[:name]
+  }
+  if !wiki_name.nil?
+    wiki_name['frequency'] = us_census_name[:frequency]
+  end
+end
+
 # Create names in database
-names.each do |name|
+wiki_names.each do |name|
   name['origins'] # ['French', 'Russian']
   origins = name['origins'].map do |origin|
     origin_lookup[origin]
@@ -35,25 +46,7 @@ names.each do |name|
     soundex: Text::Soundex.soundex(name['name']),
     metaphone: Text::Metaphone.metaphone(name['name']),
     double_metaphone: Text::Metaphone.double_metaphone(name['name']),
-    origin: origins
+    origin: origins,
+    frequency: name['frequency']
     })
 end
-
-# results = import_US_names
-#
-# results[0].each do |result|
-#   if names.include? result
-#     result
-
-
-# Name.destroy_all
-
-# names.each do |name|
-  # puts single_name['name']
-  # params = {
-  #   name: single_name['name'],
-  #   # origin: single_name['origin'],
-  #   gender: single_name['gender']
-  # }
-#   Name.create!(name)
-# end

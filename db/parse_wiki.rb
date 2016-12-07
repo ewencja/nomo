@@ -222,8 +222,7 @@ end
 # Initiate import
 #################################################
 
-def import_names
-  path = './Wikipedia-20161205152210.xml'
+def parse_wiki(path)
   doc = Nokogiri::XML(File.read(path))
   return parse_pages(doc)
 end

@@ -1,7 +1,25 @@
-<h1>this is the results page</h1>
-<%= p params[:gender] %>
-<%= p params[:origin] %>
-<%= p params[:origin] %>
-<%= p params[:length] %>
-<% raise %>
-<%= @names %>
+<h1>Suggestions:</h1>
+
+<p>
+  Gender: <%= p params[:gender] %>
+</p>
+<p>
+  Origin: <%= p params[:origin] %>
+</p>
+
+<p>
+  <ul>
+    <% @names.each do |name| %>
+      <li>
+        <% if name.gender === 'masculine' %>
+          <i class="fa fa-male fa-fw"></i>
+        <% elsif name.gender === 'feminine' %>
+          <i class="fa fa-female fa-fw"></i>
+        <% else %>
+          <i class="fa fa-venus-mars"></i>
+        <% end %>
+        <%= name.name %>
+      </li>
+    <% end %>
+  </ul>
+</p>

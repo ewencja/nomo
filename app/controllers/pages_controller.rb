@@ -18,10 +18,11 @@ class PagesController < ApplicationController
 
   def results
     if params[:gender].present? || params[:origin].present?
-      origin = Origin.find_by(origin: params[:origin]).id
-      @names = Name.where(gender: params[:gender]).joins(:names_origins).where(origin: origin)
-      #origin.collect(&:origin).first
-      raise
+      @names = Name
+        .joins(:origin)
+        .where(
+          'names.gender' => params[:gender],
+          'origins.origin' => [params[:origin0], params[:origin1]]);
     else
       @names = Name.all
     end

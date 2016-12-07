@@ -14,7 +14,7 @@
         <div class="col-sx-6 col-offset-3">
 
          <div class="search-form">
-           <%= form_tag(:controller => "pages", :action => "results") do %>
+           <%= form_tag({:controller => "pages", :action => "results"}, {:method => :get}) do %>
            <!-- select boy or girl -->
            <%= label_tag( "Are you expecting a boy or girl?")%>
            <br>
@@ -25,14 +25,14 @@
            <br>
            <%= label_tag( "What country is your country of origin?")%>
            <br>
-           <%= select_tag :origin, options_for_select(@origin_names) %>
+           <%= select_tag :origin0, options_for_select(@origin_names) %>
            <!-- select baby country -->
-           <!-- <br>
+           <br>
            <br>
            <br>
            <%= label_tag( "What country will the baby most likely live in?")%>
            <br>
-           <%= select_tag :origin, options_for_select(@origin_names) %> -->
+           <%= select_tag :origin1, options_for_select(@origin_names) %>
            <!-- select short, medium long -->
            <br>
            <br>
