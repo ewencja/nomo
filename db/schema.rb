@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208145418) do
+ActiveRecord::Schema.define(version: 20161209113058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20161208145418) do
     t.string   "double_metaphone"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.integer  "frequency"
     t.string   "length"
+    t.string   "occurence"
   end
 
   create_table "names_origins", id: false, force: :cascade do |t|
