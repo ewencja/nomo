@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'nokogiri'
 gem 'text'
+gem 'pg_search'
+gem "algoliasearch-rails"
+gem "simple_form"
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 
