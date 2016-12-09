@@ -33,8 +33,14 @@
   <ul>
     <% @names.each do |name| %>
       <li>
-
-        <%= name.name%>
+        <% if name['gender'] === 'masculine' %>
+          <i class="fa fa-male fa-fw"></i>
+        <% elsif name['gender'] === 'feminine' %>
+          <i class="fa fa-female fa-fw"></i>
+        <% else %>
+          <i class="fa fa-venus-mars"></i>
+        <% end %>
+        <%= name.name %>
 
       </li>
     <% end %>

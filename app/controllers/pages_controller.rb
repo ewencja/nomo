@@ -35,7 +35,7 @@ class PagesController < ApplicationController
       #     'names.gender' => session[:gender],
       #     'names.length' => params[:length],
       #     'origins.origin' => [params[:origin0], params[:origin1]]);
-      @names = Name.find_by_sql("SELECT b.name
+      @names = Name.find_by_sql("SELECT b.name, b.gender
           FROM names n
           JOIN names_origins n_o
           	ON n_o.name_id = n.id
