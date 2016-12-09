@@ -4,11 +4,23 @@
   </div>
 <% else %>
   <% @found_name.each do |name| %>
+
+  <p style="margin: 1em 0 0.5em 1em">
     <%= name.name %>
-    <%= name.gender %>
-    <%= name.metaphone %>
+    (<%= name.gender %>)
+    <span class="badge" style="margin-right: 1em">
+      <%= name.metaphone %>
+    </span>
     <% end %>
 
-    <%= @origins %>
+    <ul>
+    <% @origins.each do |origin| %>
+      <li>
+        <%= origin.origin %>
+      </li>
+    <% end %>
+    </ul>
+  </p>
+
 <% end %>
 <%# raise %>

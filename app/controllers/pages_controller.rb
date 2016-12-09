@@ -42,8 +42,8 @@ class PagesController < ApplicationController
           JOIN origins o
           	ON n_o.origin_id = o.id
           JOIN names b
-          	ON left(n.name, 1) = left(b.name, 1) and right(n.name, 1) = right(b.name, 1) and length(n.metaphone) = length(b.metaphone) and n.gender = b.gender
-          WHERE (o.origin = '#{params[:origin0]}' or o.origin = '#{params[:origin1]}') and n.gender = '#{session[:gender]}'").sample(7)
+          	ON n.metaphone = b.metaphone and n.gender = b.gender
+          WHERE (o.origin = '#{params[:origin0]}' or o.origin = '#{params[:origin1]}') and n.gender = '#{session[:gender]}' and n.name = '#{cookies[:soundex][0]}'").sample(7)
     # else
     #   @names = Name.all
     # end
@@ -53,7 +53,6 @@ class PagesController < ApplicationController
   def reset_session
     session.clear
     redirect_to root_path
-
   end
 
   # def search_for_name

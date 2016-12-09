@@ -30,11 +30,10 @@ class NamesController < ApplicationController
     search_term = params[:searched_name]
     @found_name = Name.where(name: search_term)
     @origins = Origin.find_by_sql("SELECT o.origin FROM
-      names_origins m
-      JOIN origins o ON m.origin_id = o.id
-      JOIN names n ON m.name_id = n.id
-      WHERE n.name = '#{@found_name}'")
-
+      names n
+      JOIN names_origins n_o ON n_o.name_id = n.id
+      JOIN origins o ON n_o.origin_id = o.id
+      WHERE n.name = '#{@found_name.first.name}'")
     # @origins = []
     # unless @found_name.empty?
     #   @found_name.each do |name|
