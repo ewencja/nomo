@@ -4,14 +4,14 @@ require_relative 'parse_us_census'
 
 
 Origin.destroy_all
-#Frequency.destroy_all
+Frequency.destroy_all
 Name.destroy_all
 
 puts "Parsing wiki data"
 wiki_names = parse_wiki(ARGV[1]) # [{ name: Ewa, origins: [French, Polish], ... }]
 
 # puts "Parsing US census data"
-# us_census_names = import_us_census
+us_census_names = import_us_census
 
 puts "Extracting origins into string array"
 # Extract origins into string array
