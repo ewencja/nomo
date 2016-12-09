@@ -4,14 +4,14 @@ require_relative 'parse_us_census'
 
 
 Origin.destroy_all
-Frequency.destroy_all
+#Frequency.destroy_all
 Name.destroy_all
 
 puts "Parsing wiki data"
 wiki_names = parse_wiki(ARGV[1]) # [{ name: Ewa, origins: [French, Polish], ... }]
 
-puts "Parsing US census data"
-us_census_names = import_us_census
+# puts "Parsing US census data"
+# us_census_names = import_us_census
 
 puts "Extracting origins into string array"
 # Extract origins into string array
@@ -98,19 +98,20 @@ puts "hash size #{created_names.size}"
 #     end
 # end
 
-
 puts "Adding frequencies to names"
 # Add frequencies to names
-new_frequencies = Array.new
-us_census_names.each do |us_census_name|
-    puts "Processing #{us_census_name[:year]}-#{us_census_name[:name]}"
-    new_name = created_names_hash[us_census_name[:name]]
-    if !new_name.nil? && if new_name.gender == us_census_name[:gender]
-      new_frequencies << {
-        name_id: new_name.id,
-        frequency: us_census_name[:frequency],
-        year: us_census_name[:year]
-      }
-    end
+Frequency.transaction do
+  us_census_names.each do |us_census_name|
+      puts "Processing #{us_census_name[:year]}-#{us_census_name[:name]}"
+      new_name = Name.where(
+        :name => us_census_name[:name],
+        :gender => us_census_name[:gender]).first
+      if !new_name.nil?
+        Frequency.create({
+          name_id: new_name.id,
+          frequency: us_census_name[:frequency],
+          year: us_census_name[:year]
+        })
+      end
+  end
 end
-Frequency.create(new_frequencies)
