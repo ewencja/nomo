@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209120308) do
+ActiveRecord::Schema.define(version: 20161209113058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,11 +30,10 @@ ActiveRecord::Schema.define(version: 20161209120308) do
     t.string   "soundex"
     t.string   "metaphone"
     t.string   "double_metaphone"
-    t.string   "length"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "length"
     t.string   "occurence"
-    t.index ["name"], name: "index_names_on_name", using: :btree
   end
 
   create_table "names_origins", id: false, force: :cascade do |t|
