@@ -1,0 +1,30 @@
+<h1>Soundex examples</h1>
+<h3>This is the chosen gender</h3>
+<%= session[:gender] %>
+<h3>This is your sample</h3>
+<div class="search-form">
+<%= form_tag({:controller => "names", :action => "selection"}, {:method => :post}) do %>
+ <!-- select boy or girl -->
+ <%= label_tag( "Choose soundex")%>
+ <br>
+  <%= p session[:soundex_sample][0] %>
+  <%= check_box_tag('names[]', session[:soundex_sample
+    ][0]) %>
+
+      <%= p session[:soundex_sample][1] %>
+  <%= check_box_tag('names[]', session[:soundex_sample
+    ][1]) %>
+
+      <%= p session[:soundex_sample][2] %>
+  <%= check_box_tag('names[]', session[:soundex_sample
+    ][2]) %>
+
+      <%= p session[:soundex_sample][3] %>
+  <%= check_box_tag('names[]', session[:soundex_sample
+    ][3] )%>
+
+  <br>
+ <%= submit_tag("Search", :class => "btn btn-primary") %>
+ <% end %>
+</div>
+
