@@ -18,17 +18,23 @@ class PagesController < ApplicationController
     end
   end
 
+
+
   def results
-    if params[:gender].present? || params[:origin].present?
+    if params[:gender].present? || params[:origin].present? || params[:length].present?
       @names = Name
         .joins(:origin)
         .where(
           'names.gender' => params[:gender],
+          'names.length' => params[:length],
           'origins.origin' => [params[:origin0], params[:origin1]]);
     else
       @names = Name.all
     end
+    @sample = Name.where(:gender => params[:gender]).sample(5)
+
   end
+
 
   def search_for_name
 
@@ -54,4 +60,10 @@ class PagesController < ApplicationController
 # end
 
 # helper_method :get_meaning_name
+
+  # def display_soundex_names
+  #
+  # end
+
+
 end

@@ -31,6 +31,8 @@ gem 'text'
 gem 'pg_search'
 gem "algoliasearch-rails"
 gem "simple_form"
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

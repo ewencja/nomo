@@ -4,8 +4,20 @@
   Gender: <%= p params[:gender] %>
 </p>
 <p>
-  Origin: <%= p params[:origin] %>
+  Origin1: <%= p params[:origin0] %>
 </p>
+<p>
+  Origin2: <%= p params[:origin1] %>
+</p>
+<p>
+  Length: <%= p params[:length] %>
+</p>
+<p>
+<% @sample.each do |name| %>
+  <li><%= name['name'] %></li>
+<% end %>
+</p>
+
 
 <p>
   <ul>
