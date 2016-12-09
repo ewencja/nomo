@@ -60,5 +60,5 @@ ActiveRecord::Schema.define(version: 20161209162121) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
   end
 
-  add_foreign_key "frequencies", "names"
+  #add_foreign_key "frequencies", "names"
 end
