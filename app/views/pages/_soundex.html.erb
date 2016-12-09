@@ -7,24 +7,29 @@
  <!-- select boy or girl -->
  <%= label_tag( "Choose soundex")%>
  <br>
-  <%= p session[:soundex_sample][0] %>
-  <%= check_box_tag('names[]', session[:soundex_sample
-    ][0]) %>
 
-      <%= p session[:soundex_sample][1] %>
-  <%= check_box_tag('names[]', session[:soundex_sample
-    ][1]) %>
+  <%= p session[:soundex_sample][0]['name'] %>
 
-      <%= p session[:soundex_sample][2] %>
-  <%= check_box_tag('names[]', session[:soundex_sample
-    ][2]) %>
+  <%= check_box_tag('soundex_names[]', session[:soundex_sample
+    ][0]['name']) %>
 
-      <%= p session[:soundex_sample][3] %>
-  <%= check_box_tag('names[]', session[:soundex_sample
-    ][3] )%>
+      <%= p session[:soundex_sample][1]['name'] %>
+  <%= check_box_tag('soundex_names[]', session[:soundex_sample
+    ][1]['name']) %>
+
+      <%= p session[:soundex_sample][2]['name'] %>
+  <%= check_box_tag('soundex_names[]', session[:soundex_sample
+    ][2]['name']) %>
+
+      <%= p session[:soundex_sample][3]['name'] %>
+  <%= check_box_tag('soundex_names[]', session[:soundex_sample
+    ][3]['name'] )%>
+
+    <%= p session[:soundex_sample][4]['name'] %>
+<%= check_box_tag('soundex_names[]', session[:soundex_sample
+  ][4]['name'] )%>
 
   <br>
  <%= submit_tag("Search", :class => "btn btn-primary") %>
  <% end %>
 </div>
-

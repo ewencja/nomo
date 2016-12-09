@@ -14,10 +14,9 @@
         <div class="col-sx-6 col-offset-3">
         <% if session[:gender].nil? %>
           <%= render 'gender', gender: @gender %>
-        <% elsif session[:soundex].nil? %>
+        <% elsif cookies[:soundex].nil? %>
           <%= render 'soundex' %>
           <% else %>
-
           <%= render 'selection'%>
         <% end %>
         </div>

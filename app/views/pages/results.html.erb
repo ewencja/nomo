@@ -14,19 +14,15 @@
 </p>
 <h3>Names sample for soundex</h3>
 <p>
-  Soundex choice: <%= p session[:soundex] %>
+   Soundex choice:
+ <% cookies.signed[:soundex].each do |name| %>
+  <%= p name %>
+  <% end %>
 </p>
-<p>
-<% @sample.each do |name| %>
-  <li><%= name['name'] %></li>
-<% end %>
 <br>
 <br>
 <h3>Names by soundex</h3>
 <p>
-<% @soundex_names.each do |name| %>
-<li><%= name['name'] %></li>
-<% end %>
 </p>
 
 
@@ -40,14 +36,8 @@
   <ul>
     <% @names.each do |name| %>
       <li>
-        <% if name.gender === 'masculine' %>
-          <i class="fa fa-male fa-fw"></i>
-        <% elsif name.gender === 'feminine' %>
-          <i class="fa fa-female fa-fw"></i>
-        <% else %>
-          <i class="fa fa-venus-mars"></i>
-        <% end %>
-        <%= name.name%>-<%= name.length %>
+
+        <%= name.name%>
 
       </li>
     <% end %>
