@@ -1,25 +1,30 @@
 class NamesController < ApplicationController
 
   def soundex
-     #@sample_soundex = Name.where(:gender => params[:gender]).sample(10)
-      @sample_soundex = ["Anna", "Max", "Michelle", "Ewa"]
-      session[:gender] = params[:gender]
-      session[:soundex_sample] = @sample_soundex
-      redirect_to root_path
+    # @sample_soundex = Name.where(:gender => params[:gender]).sample(10)
+    session.delete(gender) if session[:gender]
+    session[:gender] = params[:gender]
+    @sample_soundex = Name.where(:gender => session[:gender]).sample(5)
+    # @sample_soundex = ["Anna", "Max", "Michelle", "Ewa"]
+    session[:soundex_sample] = @sample_soundex
+    cookies.delete :soundex if cookies[:soundex]
+    redirect_to root_path
   end
 
 
   def selection
+    cookies.signed[:soundex] = params[:soundex_names]
 
-    session[:soundex] = params[:names]
     #FIX ME names of countries/origin needs to be added - database!
-    origin_names0 = ["Netherlands", "Spain"]
-    session[:origin0_sample] = origin_names0
-    origin_names1 = ["Netherlands", "Spain"]
-    session[:origin1_sample] = origin_names1
-
+    origin_names = []
+    origins = Origin.all
+    origins.each do |origin|
+      origin_names << origin.origin
+    end
+    session[:origin_sample] = origin_names
     redirect_to root_path
   end
+
 
   def name_search
     search_term = params[:searched_name]
@@ -38,5 +43,6 @@ class NamesController < ApplicationController
      #end
    #end
   end
+
 
 end

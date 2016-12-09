@@ -17,8 +17,8 @@
            <!-- select boy or girl -->
            <%= label_tag( "Are you expecting a boy or girl?")%>
            <br>
-           <%= select_tag :gender, options_for_select(@gender)%>
 
+           <%= select_tag :gender, options_for_select(@gender,@gender.first) %>
            <br>
            <%= submit_tag("Search", :class => "btn btn-primary") %>
            <% end %>
@@ -28,5 +28,3 @@
    </div>
  </div>
 </div>
-
-

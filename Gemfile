@@ -34,6 +34,7 @@ gem "simple_form"
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
+gem "activerecord-session_store"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
