@@ -1,0 +1,14 @@
+<% if @found_name.empty? %>
+<div class="alert alert-danger">
+  Oh no, we cannot find that name!
+  </div>
+<% else %>
+  <% @found_name.each do |name| %>
+    <%= name.name %>
+    <%= name.gender %>
+    <%= name.metaphone %>
+    <% end %>
+
+    <%= @origins %>
+<% end %>
+<%# raise %>
