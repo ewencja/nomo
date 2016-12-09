@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'nokogiri'
 gem 'text'
+gem 'pg_search'
+gem "algoliasearch-rails"
+gem "simple_form"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

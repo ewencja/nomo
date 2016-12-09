@@ -19,6 +19,9 @@
 // Components
 @import "components/button";
 
+//Layout
+@import "layout/navbar"
+
 //Pages
 @import "pages";
 
