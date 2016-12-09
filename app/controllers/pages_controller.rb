@@ -31,15 +31,27 @@ class PagesController < ApplicationController
     else
       @names = Name.all
     end
-    @sample = Name.where(:gender => params[:gender]).sample(5)
+    @sample = Name.where(:gender => params[:gender]).sample(6)
 
+    a = "Anna" #this name has a metaphone index
+    b = "Alicia" #this name has a metaphone index
+
+    @soundex_names = Name.find_by_sql("SELECT b.name, b.metaphone from NAMES a
+      JOIN NAMES b
+      ON left(a.name, 1) = left(b.name, 1) and right(a.name, 1) = right(b.name, 1) and length(a.metaphone) = length(b.metaphone)
+      WHERE a.name = '#{a}' or a.name = '#{b}'")
   end
 
-
-  def search_for_name
-
-
-  end
+  #
+  # def search_for_name
+  #   # @sample = Name.where(:gender => params[:gender]).sample(10)
+  #   a = "Isabella" #this name has a metaphone index
+  #   b = "Alicia" #this name has a metaphone index
+  #   soundex_names = Name.where(
+  #     :metaphone => a[:metaphone])
+  #   p soundex_names
+  # end
+  # search_for_name
 
 # def get_meaning_name(name)
 #   # begin

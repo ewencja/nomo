@@ -12,13 +12,22 @@
 <p>
   Length: <%= p params[:length] %>
 </p>
+<h3>Names sample for soundex</h3>
 <p>
 <% @sample.each do |name| %>
   <li><%= name['name'] %></li>
 <% end %>
+<br>
+<br>
+<h3>Names by soundex</h3>
+<p>
+<% @soundex_names.each do |name| %>
+<li><%= name['name'] %></li>
+<% end %>
 </p>
-
-
+<br>
+<br>
+<h3>Results from the parameters from the first page</h3>
 <p>
   <ul>
     <% @names.each do |name| %>
@@ -36,5 +45,3 @@
     <% end %>
   </ul>
 </p>
-
-
