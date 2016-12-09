@@ -2,19 +2,15 @@
 <html>
   <head>
     <title>Nomo</title>
-
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= csrf_meta_tags %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!--     <#%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %> -->
-   <!--  <#%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> -->
-
 
   </head>
 
   <body>
     <%= render "shared/navbar" %>
     <%= yield %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
