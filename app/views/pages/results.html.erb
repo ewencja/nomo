@@ -1,7 +1,7 @@
 <h1>Suggestions:</h1>
 
 <p>
-  Gender: <%= p params[:gender] %>
+  Gender: <%= p session[:gender]%>
 </p>
 <p>
   Origin1: <%= p params[:origin0] %>
@@ -14,6 +14,9 @@
 </p>
 <h3>Names sample for soundex</h3>
 <p>
+  Soundex choice: <%= p session[:soundex] %>
+</p>
+<p>
 <% @sample.each do |name| %>
   <li><%= name['name'] %></li>
 <% end %>
@@ -25,9 +28,14 @@
 <li><%= name['name'] %></li>
 <% end %>
 </p>
+
+
+<%= link_to "start again", reset_path %>
+
 <br>
 <br>
 <h3>Results from the parameters from the first page</h3>
+
 <p>
   <ul>
     <% @names.each do |name| %>

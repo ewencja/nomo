@@ -1,0 +1,32 @@
+
+         <div class="search-form">
+           <%= form_tag({:controller => "pages", :action => "results"}, {:method => :get}) do %>
+           <!-- select boy or girl -->
+
+           <br>
+           <br>
+           <br>
+           <%= label_tag( "What country is your country of origin?")%>
+           <br>
+           <%= select_tag :origin0, options_for_select(session[:origin0_sample]) %>
+           <!-- select baby country -->
+           <br>
+           <br>
+           <br>
+           <%= label_tag( "What country will the baby most likely live in?")%>
+           <br>
+           <%= select_tag :origin1, options_for_select(session[:origin1_sample]) %>
+           <!-- select short, medium long -->
+           <br>
+           <br>
+           <br>
+           <%= label_tag( "How long should your baby's name be?")%>
+           <br>
+           <%= select_tag :length, options_for_select(@length) %>
+           <!-- submit selection criterias -->
+           <br>
+           <br>
+           <br>
+           <%= submit_tag("Search", :class => "btn btn-primary") %>
+           <% end %>
+      </div>

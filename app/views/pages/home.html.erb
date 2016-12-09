@@ -12,40 +12,19 @@
         <br>
         <!-- GENDER -->
         <div class="col-sx-6 col-offset-3">
+        <% if session[:gender].nil? %>
+          <%= render 'gender', gender: @gender %>
+        <% elsif session[:soundex].nil? %>
+          <%= render 'soundex' %>
+          <% else %>
 
-         <div class="search-form">
-           <%= form_tag({:controller => "pages", :action => "results"}, {:method => :get}) do %>
-           <!-- select boy or girl -->
-           <%= label_tag( "Are you expecting a boy or girl?")%>
-           <br>
-           <%= select_tag :gender, options_for_select(@gender)%>
-           <!-- select parents origins (plural!)-->
-           <br>
-           <br>
-           <br>
-           <%= label_tag( "What country is your country of origin?")%>
-           <br>
-           <%= select_tag :origin0, options_for_select(@origin_names) %>
-           <!-- select baby country -->
-           <br>
-           <br>
-           <br>
-           <%= label_tag( "What country will the baby most likely live in?")%>
-           <br>
-           <%= select_tag :origin1, options_for_select(@origin_names) %>
-           <!-- select short, medium long -->
-           <br>
-           <br>
-           <br>
-           <%= label_tag( "How long should your baby's name be?")%>
-           <br>
-           <%= select_tag :length, options_for_select(@length) %>
-           <!-- submit selection criterias -->
-           <br>
-           <br>
-           <br>
-           <%= submit_tag("Search", :class => "btn btn-primary") %>
-           <% end %>
+          <%= render 'selection'%>
+        <% end %>
+        </div>
+
       </div>
     </div>
   </div>
+</div>
+
+ <!-- session[:gender].present? -->

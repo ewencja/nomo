@@ -2,6 +2,13 @@ require 'open-uri'
 require 'nokogiri'
 
 class PagesController < ApplicationController
+   def gender
+    @gender = ["masculine", "feminine", "unisex"]
+  end
+
+  def soundex
+  end
+
   def home
     @gender = ["masculine", "feminine", "unisex"]
     get_names_origin
@@ -31,7 +38,20 @@ class PagesController < ApplicationController
     else
       @names = Name.all
     end
+
+    @sample = Name.where(:gender => params[:gender]).sample(5)
+
+  end
+
+  def reset_session
+    session.clear
+    redirect_to root_path
+  end
+
+  def search_for_name
+
     @sample = Name.where(:gender => params[:gender]).sample(6)
+
 
     a = "Anna" #this name has a metaphone index
     b = "Alicia" #this name has a metaphone index

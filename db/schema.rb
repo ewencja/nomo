@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 20161208145418) do
     t.string   "soundex"
     t.string   "metaphone"
     t.string   "double_metaphone"
-    t.integer  "frequency"
-    t.string   "length"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "frequency"
+    t.string   "length"
   end
 
   create_table "names_origins", id: false, force: :cascade do |t|
