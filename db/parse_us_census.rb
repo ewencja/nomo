@@ -1,4 +1,4 @@
-#
+
 # def import_us_census(path)
 #   results = []
 #
@@ -33,22 +33,3 @@ def import_us_census
   end
   return results
 end
-#
-# puts "People from 1970"
-# # p results["1880"][0][:name]
-#
-# results["1970"].each do |person|
-#   if person[:name] == "Jennifer"
-#       p "#{person[:name]} has #{person[:frequency]} occurence as #{person[:gender]}"
-#   end
-# end
-#
-# results[year].each do |key, value|
-#   puts key
-#   value.each do |k,v|
-#     k = value[0]
-#     v = value[1]
-#     puts k
-#     puts v
-#   end
-# end
