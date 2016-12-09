@@ -32,6 +32,7 @@ gem 'pg_search'
 gem "algoliasearch-rails"
 gem "simple_form"
 gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 
 # Use Capistrano for deployment

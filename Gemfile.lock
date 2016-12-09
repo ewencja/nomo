@@ -185,6 +185,7 @@ PLATFORMS
 
 DEPENDENCIES
   algoliasearch-rails
+  autoprefixer-rails
   better_errors
   binding_of_caller
   bootstrap-sass
