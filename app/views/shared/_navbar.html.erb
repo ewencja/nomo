@@ -7,12 +7,14 @@
     <!-- Right Navigation -->
     <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-      <!-- Search form -->
+      <a href="" class="navbar-wagon-item navbar-wagon-link">about us</a>
 
-      <div class="search-form">
-      <%= form_tag({:controller => "names", :action => "name_search"}, {:method => :post}) do %>
-        <%= text_field_tag :searched_name %>
-        <%= submit_tag("Search", :class => "btn btn-primary") %>
+      <!-- Search form -->
+      <!-- TODO: Design Text (grey and right distances) -->
+
+      <div class="navbar-wagon-search">
+        <%= form_tag({:controller => "names", :action => "name_search"}, {:method => :post}) do %>
+        <%= text_field_tag :searched_name,placeholder="Search for a name", :onclick => 'if($(this).val()=="Search for a name"){$(this).val("");};'%>
         <% end %>
       </div>
 
@@ -22,10 +24,10 @@
 
 
     <!-- Text link -->
-    <a href="" class="navbar-wagon-item navbar-wagon-link">Contact</a>
+    <!--  <a href="" class="navbar-wagon-item navbar-wagon-link">Contact</a> -->
 
     <!-- Text link -->
-    <a href="" class="navbar-wagon-item navbar-wagon-link">Team</a>
+
 
     <!-- Notification link-->
    <!--  <a href="" class="navbar-wagon-item navbar-wagon-link">
