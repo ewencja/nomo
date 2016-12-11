@@ -40,5 +40,23 @@ class NamesController < ApplicationController
     end
   end
 
+  def names_search
+
+    names = Name
+      .select('names.*, origins.*')
+      .joins(:origin)
+      .where("names.gender = #{ActiveRecord::Base.sanitize(params[:gender])}
+        and LOWER(names.name) LIKE '%#{params[:name].downcase}%'
+        and (origins.origin = #{ActiveRecord::Base.sanitize(params[:origin])} or
+          #{ActiveRecord::Base.sanitize(params[:origin])} = '')")
+      .distinct
+
+    render json: names
+  end
+
+  def names
+
+  end
+
 
 end

@@ -1,24 +1,25 @@
-<div class="background_image" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://static.pexels.com/photos/172256/pexels-photo-172256.jpeg');">
-  <div class="banner-content">
-    <div class="container text-center">
-      <div class="row">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3 text-center">
+
+      <h1> Let's find your baby's name</h1>
 
 
-        <br>
-        <!-- GENDER -->
-        <div class="col-sx-6 col-offset-3">
-        <% if session[:gender].nil? %>
-          <%= render 'gender', gender: @gender %>
-        <% elsif cookies[:soundex].nil? %>
-          <%= render 'soundex' %>
-          <% else %>
-          <%= render 'selection'%>
-        <% end %>
+      <div class="col-sx-6 col-offset-3">
+
+        <div class="btn-group" role="group" aria-label="...">
+          <a type="button" class="btn btn-default"
+              href="names?gender=masculine">
+            <i class="fa fa-fw fa-male"></i>
+          </a>
+          <a type="button" class="btn btn-default"
+              href="names?gender=feminine">
+            <i class="fa fa-fw fa-female"></i>
+          </a>
         </div>
 
       </div>
+
     </div>
   </div>
 </div>
-
- <!-- session[:gender].present? -->

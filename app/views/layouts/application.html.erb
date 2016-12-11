@@ -4,6 +4,7 @@
     <title>Nomo</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.10.1/chartist.min.css' %>
+    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css' %>
     <%= csrf_meta_tags %>
 
   </head>
@@ -13,6 +14,10 @@
     <%= yield %>
 
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.10.1/chartist.min.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/js-url/2.3.1/url.min.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js' %>
   </body>
 </html>

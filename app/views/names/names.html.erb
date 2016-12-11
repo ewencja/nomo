@@ -1,0 +1,106 @@
+<div class="container-fluid">
+
+  <form id="search-form" class="form-inline">
+
+    <div class="form-group">
+      <label for="nameInput">Name</label>
+      <input type="text" name="name"
+        type="text"
+        class="form-control"
+        placeholder="Name"
+        autocomplete="off">
+    </div>
+
+    <div class="form-group">
+      <label for="nameInput">Origin</label>
+      <input type="text" name="origin"
+        type="text"
+        class="form-control"
+        autocomplete="off">
+    </div>
+
+  </form>
+
+  <div id="names-list"></div>
+
+</div>
+
+<script id="name-entry" type="x-tmpl-mustache">
+  <div class="row">
+    <div class="col-xs-3">
+      {{name}}
+    </div>
+    <div className="col-xs-3">
+      {{gender}}
+    </div>
+  </div>
+</script>
+
+<script>
+  window.addEventListener('load', function() {
+
+    let gender = url('?gender'),
+      template = $('#name-entry').html();
+
+    $('#search-form [name=name]').keyup(function() {
+      App.names.refreshList();
+    });
+
+    $('#search-form [name=origin]').autocomplete({
+      source: function(request, callback) {
+        $.get({
+          url: `/origins?` + $.param({ origin: request.term }),
+          success: callback
+        });
+      },
+      minLength: 2,
+      select: refreshList
+    })
+
+    Mustache.parse(template);
+
+    function renderList(names) {
+      var rendered = names.map(function(name) {
+        return Mustache.render(template, {
+          name: name.name,
+          gender: name.gender,
+          origins: name.origin.map(origin => origin.origin).join(', ')
+        }); // Hello Ewa!
+      }).join('');
+      $('#names-list').html(rendered);
+    }
+
+    var lastRequest;
+
+    function reloadContent(queryString) {
+      if(lastRequest) {
+        lastRequest.abort();
+      }
+      lastRequest = $.get({
+        url: `/names/${gender}?${queryString}`,
+        success: renderList
+      });
+    }
+
+    var reloadContentThrottled =
+      _.debounce(reloadContent, 200);
+
+    function refreshList() {
+      let queryString = $('#search-form').serialize();
+      reloadContentThrottled(queryString);
+    }
+
+    reloadContent($('#search-form').serialize());
+
+    (function() {
+
+      this.App || (this.App = {});
+
+      App.names = {
+        refreshList: refreshList
+      }
+
+    }).call(this);
+
+  });
+</script>
