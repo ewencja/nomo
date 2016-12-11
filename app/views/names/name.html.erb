@@ -1,0 +1,41 @@
+<% if @name.nil? %>
+
+  <div class="alert alert-danger">
+    Oh no, we cannot find that name!
+  </div>
+
+<% else %>
+
+  <p style="margin: 1em 0 0.5em 1em">
+
+    <%= @name.name %>
+
+    (<%= @name.gender %>)
+
+    <span class="badge" style="margin-right: 1em">
+      <%= @name.metaphone %>
+    </span>
+
+  </p>
+
+  <ul>
+    <% @origins.each do |origin| %>
+      <li>
+        <%= origin.origin %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h3>Frequencies</h3>
+
+  <div id="chart-container">
+
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      App.frequencies.chart('<%= @name.name %>', '#chart-container');
+    });
+  </script>
+
+<% end %>

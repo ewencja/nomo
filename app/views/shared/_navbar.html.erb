@@ -1,67 +1,24 @@
 <div class="navbar-wagon">
-  <!-- Logo -->
- <!--  <a href="/" class="navbar-wagon-brand">
-      <img src="images/2016-11-29.png" />
-    </a -->
 
-    <!-- Right Navigation -->
-    <div class="navbar-wagon-right hidden-xs hidden-sm">
+  <!-- Logo Placeholder -->
+  <a href="/" class="navbar-wagon-brand"
+    style="width: 2em; height: 2em; border-radius: 1em; background: steelblue; text-align: center; line-height: 2em; color: white">
+    H
+  </a>
 
-      <a href="" class="navbar-wagon-item navbar-wagon-link">about us</a>
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right">
 
-      <!-- Search form -->
-      <!-- TODO: Design Text (grey and right distances) -->
+    <a href="" class="navbar-wagon-item navbar-wagon-link">about us</a>
 
-      <div class="navbar-wagon-search">
-        <%= form_tag({:controller => "names", :action => "name_search"}, {:method => :post}) do %>
-        <%= text_field_tag :searched_name,placeholder="Search for a name", :onclick => 'if($(this).val()=="Search for a name"){$(this).val("");};'%>
-        <% end %>
-      </div>
+    <!-- Search form -->
+    <!-- TODO: Design Text (grey and right distances) -->
 
- <!--    <#%= simple_form_for :search,  url: pages_home_path , :method => :get do |f| %>
-    <#%= f.input :name %>
-    <#%= f.submit "Search" %> -->
-
-
-    <!-- Text link -->
-    <!--  <a href="" class="navbar-wagon-item navbar-wagon-link">Contact</a> -->
-
-    <!-- Text link -->
-
-
-    <!-- Notification link-->
-   <!--  <a href="" class="navbar-wagon-item navbar-wagon-link">
-      <div class="badge-container">
-        <i class="fa fa-envelope-o"></i>
-        <div class="badge badge-blue">3</div>
-      </div>
-    </a> -->
-
-    <!-- Profile picture and dropdown -->
-    <!-- <div class="navbar-wagon-item">
-      <div class="dropdown">
-        <img src="http://placehold.it/50x50" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
-        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Log Out</a></li>
-        </ul>
-      </div>
+    <div class="navbar-wagon-search">
+      <%= form_tag({:controller => "names", :action => "name"}, {:method => :get}) do %>
+      <%= text_field_tag :name, nil, placeholder: "search for a name" %>
+      <% end %>
     </div>
-  -->
-  <!-- Button (call-to-action) -->
-   <!--  <a href="" class="navbar-wagon-item navbar-wagon-button btn">Post stuff</a>
-  </div>
--->
-<!-- Dropdown appearing on mobile only -->
-  <!-- <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
-    </div> -->
+
   </div>
 </div>
