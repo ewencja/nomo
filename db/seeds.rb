@@ -109,9 +109,9 @@ Frequency.transaction do
         :name => us_census_name[:name],
         :gender => us_census_name[:gender]).first
 
-      if us_census_name[:year] == '2015'
+      if us_census_name[:year] == '2015' && !name.nil?
         occurence = nil;
-        frequency = us_census_name[:frequency]
+        frequency = us_census_name[:frequency].to_i
         if frequency > 2000
           occurence = 'common'
         elsif frequency > 200
@@ -137,5 +137,5 @@ end
 
 puts "Filling names to moderate"
 Name.where(:occurence => nil).each do |name|
-  name.update(:occurence => 'moderate')
+  name.update(:occurence => 'rare')
 end
