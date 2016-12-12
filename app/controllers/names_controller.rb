@@ -1,7 +1,5 @@
 class NamesController < ApplicationController
-  def names
-    @gender = params[:gender]
-  end
+
   def soundex
     # @sample_soundex = Name.where(:gender => params[:gender]).sample(10)
     session.delete(gender) if session[:gender]
@@ -29,8 +27,7 @@ class NamesController < ApplicationController
 
 
   def name
-
-    ## Method to search name navbar and return big list
+    search_term = params[:name]
     @name = Name
       .where('lower(name) = ?', search_term.downcase)
       .first
@@ -41,7 +38,6 @@ class NamesController < ApplicationController
         JOIN origins o ON n_o.origin_id = o.id
         WHERE LOWER(n.name) = LOWER('#{@name.name}')")
     end
-
   end
 
   def names_search
@@ -58,21 +54,9 @@ class NamesController < ApplicationController
     render json: names
   end
 
+  def names
 
-  def names_suggestions
-    @origin_parent = params[:origin_parent]
-    @origin_baby = params[:origin_baby]
-    @length = params[:length]
-    @gender = params[:gender]
-    #@names = Name
-    #  .select('names.*, origins.*')
-    #  .joins(:origin)
-    #  .where("names.gender = #{ActiveRecord::Base.sanitize(params[:gender])}
-    #    and (origins.origin = #{ActiveRecord::Base.sanitize(params[:origin_parent])}
-    #    or (origins.origin = #{ActiveRecord::Base.sanitize(params[:origin_baby])}
-    #    )")
-    #  .distinct
-
-    @names = Name.where(gender: @gender, length: "short")
   end
+
+
 end

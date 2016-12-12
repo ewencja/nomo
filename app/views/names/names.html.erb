@@ -1,78 +1,29 @@
-<div class="wrapper-grey">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-      <div class=title>
-          <h3> Let us know what is important for you...</h3>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container-fluid">
 
+  <form id="search-form" class="form-inline">
 
-  <div class="container">
-    <div class="row">
-      <div class=col-sm-12>
-        <div class=question_box>
-          <div class="container-fluid">
-
-            <form id="search-form" method="post" action="/names_suggestions">
-
-<!--     <div class="form-group">
+    <div class="form-group">
       <label for="nameInput">Name</label>
       <input type="text" name="name"
         type="text"
         class="form-control"
         placeholder="Name"
-        autocomplete="on">
-      </div> -->
+        autocomplete="off">
+    </div>
 
-      <div class="form-group">
-        <label for="nameInput">Origin Parents</label>
-        <input type="text" name="origin_parent"
+    <div class="form-group">
+      <label for="nameInput">Origin</label>
+      <input type="text" name="origin"
         type="text"
         class="form-control"
-        autocomplete="on">
-      </div>
+        autocomplete="off">
+    </div>
 
+  </form>
 
-      <div class="form-group">
-        <label for="nameInput">Country Baby will live in</label>
-        <input type="text" name="origin_baby"
-        type="text"
-        class="form-control"
-        autocomplete="on">
-      </div>
+  <div id="names-list"></div>
 
-
-      <div class="form-group">
-        <label for="nameInput">How long is do you prefere your baby's name?</label>
-        <br>
-        <div class="radio">
-          <input type="radio" name="length" value="short"
-          >short <br>
-          <input type="radio" name="length" value="medium"
-          >medium <br>
-          <input type="radio" name="length" value="long"
-          >long <br>
-        </div>
-      </div>
-      <input type="hidden" name="gender" value="<%= @gender %>">
-      <br><br>
-      <input type="submit" value="Find out" class="btn">
-
-    </form>
-
-    <div id="names-list"></div>
-  </div>
 </div>
-</div>
-</div>
-</div>
-
-
-
-
 
 <script id="name-entry" type="x-tmpl-mustache">
   <div class="row">
@@ -89,13 +40,13 @@
   window.addEventListener('load', function() {
 
     let gender = url('?gender'),
-    template = $('#name-entry').html();
+      template = $('#name-entry').html();
 
     $('#search-form [name=name]').keyup(function() {
       App.names.refreshList();
     });
 
-    $('#search-form [name=origin_parent]').autocomplete({
+    $('#search-form [name=origin]').autocomplete({
       source: function(request, callback) {
         $.get({
           url: `/origins?` + $.param({ origin: request.term }),
@@ -105,32 +56,8 @@
       minLength: 2,
       select: refreshList
     })
+
     Mustache.parse(template);
-
-    $('#search-form [name=origin_baby]').autocomplete({
-      source: function(request, callback) {
-        $.get({
-          url: `/origins?` + $.param({ origin: request.term }),
-          success: callback
-        });
-      },
-      minLength: 2,
-      select: refreshList
-    })
-    Mustache.parse(template);
-
-    $('#search-form [name=length]').autocomplete({
-      source: function(request, callback) {
-        $.get({
-          url: `/length?` + $.param({ origin: request.term }),
-          success: callback
-        });
-      },
-      select: refreshList
-    })
-    Mustache.parse(template);
-
-
 
     function renderList(names) {
       var rendered = names.map(function(name) {
@@ -156,7 +83,7 @@
     }
 
     var reloadContentThrottled =
-    _.debounce(reloadContent, 200);
+      _.debounce(reloadContent, 200);
 
     function refreshList() {
       let queryString = $('#search-form').serialize();
@@ -177,4 +104,3 @@
 
   });
 </script>
-</div>
