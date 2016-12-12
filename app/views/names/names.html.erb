@@ -3,20 +3,44 @@
   <form id="search-form" class="form-inline">
 
     <div class="form-group">
-      <label for="nameInput">Name</label>
-      <input type="text" name="name"
+      <label for="origin1">Origin Parent 1</label>
+      <br>
+      <input type="text" name="origin1"
         type="text"
         class="form-control"
-        placeholder="Name"
         autocomplete="off">
     </div>
 
     <div class="form-group">
-      <label for="nameInput">Origin</label>
-      <input type="text" name="origin"
+      <label for="origin2">Origin Parent 2</label>
+      <br>
+      <input type="text" name="origin2"
         type="text"
         class="form-control"
         autocomplete="off">
+    </div>
+
+    <div class="form-group" name="occurrence">
+      <input type="hidden" name="occurrence">
+      <label>Occurrence</label>
+      <br>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default" value="very rare">Very rare</button>
+        <button type="button" class="btn btn-default" value="rare">Rare</button>
+        <button type="button" class="btn btn-default" value="moderate">Moderate</button>
+        <button type="button" class="btn btn-default" value="common">Common</button>
+      </div>
+    </div>
+
+    <div class="form-group" name="length">
+      <input type="hidden" name="length">
+      <label>Length</label>
+      <br>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default" value="short">Short</button>
+        <button type="button" class="btn btn-default" value="medium">Medium</button>
+        <button type="button" class="btn btn-default" value="long">Long</button>
+      </div>
     </div>
 
   </form>
@@ -42,20 +66,32 @@
     let gender = url('?gender'),
       template = $('#name-entry').html();
 
-    $('#search-form [name=name]').keyup(function() {
-      App.names.refreshList();
-    });
+    // Bind Origin input to autocomplete
+    $('#search-form [name=origin1], #search-form [name=origin2]')
+      .autocomplete({
+        source: function(request, callback) {
+          $.get({
+            url: `/origins?` + $.param({ origin: request.term }),
+            success: callback
+          });
+        },
+        minLength: 2,
+        select: refreshList
+      });
 
-    $('#search-form [name=origin]').autocomplete({
-      source: function(request, callback) {
-        $.get({
-          url: `/origins?` + $.param({ origin: request.term }),
-          success: callback
-        });
-      },
-      minLength: 2,
-      select: refreshList
-    })
+    // Bind Buttons
+    $('#search-form [name=occurrence] button')
+      .click(function(event) {
+        $('#search-form [name=occurrence] input').val(event.target.value);
+        refreshButtons();
+        refreshList();
+      });
+    $('#search-form [name=length] button')
+      .click(function(event) {
+        $('#search-form [name=length] input').val(event.target.value);
+        refreshButtons();
+        refreshList();
+      });
 
     Mustache.parse(template);
 
@@ -65,7 +101,7 @@
           name: name.name,
           gender: name.gender,
           origins: name.origin.map(origin => origin.origin).join(', ')
-        }); // Hello Ewa!
+        });
       }).join('');
       $('#names-list').html(rendered);
     }
@@ -88,6 +124,21 @@
     function refreshList() {
       let queryString = $('#search-form').serialize();
       reloadContentThrottled(queryString);
+    }
+
+    function refreshButtons() {
+      $('#search-form [name=occurrence] button')
+        .each((i, button) => {
+          let input = $('#search-form [name=occurrence] input'),
+            state = button.value === input.val();
+          $(button).toggleClass('btn-primary', state);
+        });
+      $('#search-form [name=length] button')
+        .each((i, button) => {
+          let input = $('#search-form [name=length] input'),
+            state = button.value === input.val();
+          $(button).toggleClass('btn-primary', state);
+        });
     }
 
     reloadContent($('#search-form').serialize());
