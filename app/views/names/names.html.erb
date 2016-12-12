@@ -54,10 +54,12 @@
 <script id="name-entry" type="x-tmpl-mustache">
   <div class="row">
     <div class="col-xs-3">
-      <a href="/name?name={{name}}">{{name}}</a>
+      <a href="/name?name={{name}}">{{name.name}}</a>
     </div>
-    <div className="col-xs-3">
-      {{gender}}
+    <div class="col-xs-3">
+      <div class="bs-callout bs-callout-info">
+      {{name.gender}}
+      </div>
     </div>
   </div>
 </script>
@@ -100,9 +102,8 @@
     function renderList(names) {
       var rendered = names.map(function(name) {
         return Mustache.render(template, {
-          name: name.name,
-          gender: name.gender,
-          origins: name.origin.map(origin => origin.origin).join(', ')
+          name: name,
+          origins: name.origin.map(origin => origin.origin)
         });
       }).join('');
       $('#names-list').html(rendered);
@@ -125,6 +126,7 @@
 
     function refreshList() {
       let queryString = $('#search-form').serialize();
+      location.hash = '!?' + queryString;
       reloadContentThrottled(queryString);
     }
 
@@ -143,7 +145,16 @@
         });
     }
 
-    reloadContent($('#search-form').serialize());
+    if(/#!\?/.test(location.hash)) {
+      location.hash.substring(3).split('&')
+        .map(param => param.split('='))
+        .filter(param => param[1])
+        .forEach(param => {
+          $(`input[name=${param[0]}]`).val(param[1]);
+        });
+    }
+    refreshButtons();
+    refreshList();
 
     (function() {
 
