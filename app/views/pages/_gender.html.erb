@@ -23,28 +23,8 @@
            <%= submit_tag("Search", :class => "btn btn-primary") %>
            <% end %>
          </div>
-
-
-         <div class="search-form">
-         <%=  simple_form_for @names,
-    :url => url_for(:action => 'soundex', :controller => 'names'),
-    :method => 'post' do |f|%>
-           <!-- select boy or girl -->
-           <%= f.input :gender, label: 'What is your gender?', collection: [ ['M', 'Male' ], ['F', 'Female'] ], as: :radio_buttons, label_method: :last, value_method: :first, checked: @user.gender, item_wrapper_class: 'inline'%>
-          <%end
-          %>
-
-          <input id="user_options_true" name="user[options]" type="radio" value="true" />
-          <label class="collection_radio_buttons" for="user_options_true">Yes</label>
-          <input id="user_options_false" name="user[options]" type="radio" value="false" />
-          <label class="collection_radio_buttons" for="user_options_false">No</label>
-        </div>
-
-
-
-
-      </div>
-    </div>
-  </div>
-</div>
+       </div>
+     </div>
+   </div>
+ </div>
 </div>
