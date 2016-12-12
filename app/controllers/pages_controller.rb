@@ -11,6 +11,13 @@ class PagesController < ApplicationController
     @length = ["short", "medium", "long"]
   end
 
+ def reset_session
+    session.clear
+    redirect_to root_path
+  end
+
+
+
   def results
     @names = Name.find_by_sql("SELECT b.name, b.gender
         FROM names n
@@ -23,10 +30,6 @@ class PagesController < ApplicationController
         WHERE (o.origin = '#{params[:origin0]}' or o.origin = '#{params[:origin1]}') and n.gender = '#{session[:gender]}' and n.name = '#{cookies[:soundex][0]}'").sample(7)
   end
 
-  def reset_session
-    session.clear
-    redirect_to root_path
-  end
 
   def frequency_by_name
 
@@ -38,6 +41,9 @@ class PagesController < ApplicationController
       WHERE LOWER(n.name) = LOWER('#{params[:name]}')")
 
     render json: @output
+  end
+
+  def test
   end
 
 end

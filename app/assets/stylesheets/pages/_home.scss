@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
+
 .background_image h1 {
   font-size: 50px;
   font-weight: bold;
@@ -43,4 +46,20 @@ select {
   padding-bottom: 2px;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.gender_card {
+  width: 250px;
+  border-radius: 50%;
+  background: transparent;
+  text-align: left;
+  padding-top: 20px;
+}
+
+.gender_card img{
+transition: transform 200ms;
+
+}
+
+.gender_card img:hover{
+  transform: scale(1.2);
 }
