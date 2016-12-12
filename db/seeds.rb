@@ -102,16 +102,40 @@ puts "Adding frequencies to names"
 # Add frequencies to names
 Frequency.transaction do
   us_census_names.each do |us_census_name|
+
       puts "Processing #{us_census_name[:year]}-#{us_census_name[:name]}"
-      new_name = Name.where(
+
+      name = Name.where(
         :name => us_census_name[:name],
         :gender => us_census_name[:gender]).first
-      if !new_name.nil?
+
+      if us_census_name[:year] == '2015'
+        occurence = nil;
+        frequency = us_census_name[:frequency]
+        if frequency > 2000
+          occurence = 'common'
+        elsif frequency > 200
+          occurence = 'moderate'
+        elsif frequency > 10
+          occurence = 'rare'
+        else
+          occurence = 'very rare'
+        end
+        name.update(:occurence => occurence)
+      end
+
+      if !name.nil?
         Frequency.create({
-          name_id: new_name.id,
+          name_id: name.id,
           frequency: us_census_name[:frequency],
           year: us_census_name[:year]
         })
       end
+
   end
+end
+
+puts "Filling names to moderate"
+Name.where(:occurence => nil).each do |name|
+  name.update(:occurence => 'moderate')
 end
