@@ -1,25 +1,32 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-6 col-xs-offset-3 text-center">
 
-      <h1> Let's find your baby's name</h1>
+<div class="wrapper-image">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3 text-center">
 
+        <h1> Let's find your baby's name</h1>
 
-      <div class="col-sx-6 col-offset-3">
+        <h3> What are you expecting?</h3>
+        <br><br>
 
-        <div class="btn-group" role="group" aria-label="...">
-          <a type="button" class="btn btn-default"
-              href="names?gender=masculine">
-            <i class="fa fa-fw fa-male"></i>
-          </a>
-          <a type="button" class="btn btn-default"
-              href="names?gender=feminine">
-            <i class="fa fa-fw fa-female"></i>
+        <div class="row">
+        <div class="col-xs-6">
+            <a class="gender_card"
+            href="names/?gender=masculine">
+            <%= image_tag "baby-boy-transparent.png", width: "250" %>
           </a>
         </div>
+
+        <div class="col-xs-6">
+          <a type="button" class="gender_card" href="names/?gender=feminine">
+            <%= image_tag "baby-girl-transparent.png", width: "250" %>
+          </a>
+        </div>
+
 
       </div>
 
     </div>
   </div>
+</div>
 </div>
