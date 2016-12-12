@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-  <form id="search-form" class="form-inline">
+  <form id="search-form" class="form-inline" action="javascript:App.names.refreshList()">
 
     <div class="form-group">
       <label for="origin1">Origin Parent 1</label>
@@ -43,6 +43,8 @@
       </div>
     </div>
 
+    <input type="submit" style="display: none">
+
   </form>
 
   <div id="names-list"></div>
@@ -61,7 +63,7 @@
 </script>
 
 <script>
-  window.addEventListener('load', function() {
+  function initialize() {
 
     let gender = url('?gender'),
       template = $('#name-entry').html();
@@ -153,5 +155,8 @@
 
     }).call(this);
 
-  });
+  };
+
+  document.addEventListener('turbolinks:load', initialize);
+
 </script>
