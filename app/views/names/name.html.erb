@@ -2,13 +2,15 @@
 
   <% if @name.nil? %>
 
-    <div class="alert alert-danger">
-      Oh no, we cannot find that name!
-    </div>
+  <div class="alert alert-danger">
+    Oh no, we cannot find that name!
+  </div>
 
   <% else %>
 
-  <!--  <p style="margin: 1em 0 0.5em 1em"> -->
+
+<p style="margin: 1em 0 0.5em 1em">
+
 
   <div class="container">
     <div class="row">
@@ -17,64 +19,66 @@
       </div>
     </div>
 
-    <!--  (<%= @name.gender %>) -->
-    <!--  ADD HERE IN A ROW THE SOUNDEX NAMES -->
-   <!--  <span class="badge" style="margin-right: 1em">
-      <%= @name.metaphone %>
-    </span> -->
-    <!--  </p> -->
+
 
 
     <!-- ORIGINS-->
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class=countries-box>
-      <%= @name.name %> is a name that is common especially in the following languages:
-      <br><br>
-      <div id="name-origin-all">
-
-
-        <% @origins.each do |origin| %>
-        <div class="name-origin">
-
-          <%= origin.origin %>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class=countries-box>
+            <%= @name.name %> is a name that is used in the following languages:
+            <br><br>
+            <div id="name-origin-all">
+              <% @origins.each do |origin| %>
+              <div class="name-origin">
+                <%= origin.origin %>
+              </div>
+              <% end %>
+            </div>
+          </div>
         </div>
-        <% end %>
+      </div>
+
+                  <!--  SOUDNEX-->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class=similar-names-box>
+            If you like <%= @name.name %>  you might also like:
+            <br>
+            <% @sample_soundex.each do |name| %>
+            <span class="similar-names">
+              <a  href="/name?name=<%= name['name'] %>">
+                <%= name['name'] %>
+              </a>
+
+            <% end %>
+            </span>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- FREQUENCIES-->
+      <h4>Frequencies</h4>
+      <div id="chart-container">
+      </div>
+      <script>
+        window.addEventListener('load', function() {
+          App.frequencies.chart('<%= @name.name %>', '#chart-container');
+        });
+      </script>
+      <% end %>
+
+
+      <!--  SHARE FACEBOOK-->
+      <div class="fb-share-button facebook" data-href="https://nomonomo.herokuapp.com/name?name={{name}}" data-layout="button" data-mobile-iframe="true">
+        <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnomonomo.herokuapp.com/name?name={{name.name}}%2F&amp;src=sdkpreparse">
+          Share
+        </a>
       </div>
     </div>
-    </div>
   </div>
-</div>
-
-
-
-    <!--  SHARE FACEBOOK-->
-    <div class="fb-share-button" data-href="https://nomonomo.herokuapp.com/name?name={{name}}" data-layout="button" data-mobile-iframe="true">
-      <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnomonomo.herokuapp.com/name?name={{name.name}}%2F&amp;src=sdkpreparse">
-        Share
-      </a>
-    </div>
-    <div>
-      If you like the sound of <%= @name.name %> you would most likely like:
-      <% @sample_soundex.each do |name| %>
-        <li>
-          <a class="badge" href="/name?name=<%= name['name'] %>">
-        <%= name['name'] %>
-        </a>
-        </li>
-      <% end %>
-    </div>
-    <!-- FREQUENCIES-->
-    <h4>Frequencies</h4>
-    <div id="chart-container">
-    </div>
-    <script>
-      window.addEventListener('load', function() {
-        App.frequencies.chart('<%= @name.name %>', '#chart-container');
-      });
-    </script>
-    <% end %>
-  </div>
-</div>
