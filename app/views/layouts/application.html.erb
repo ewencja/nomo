@@ -13,6 +13,15 @@
     <%= render "shared/navbar" %>
     <%= yield %>
 
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.10.1/chartist.min.js' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/js-url/2.3.1/url.min.js' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js' %>

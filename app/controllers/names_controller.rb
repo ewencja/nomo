@@ -41,7 +41,6 @@ class NamesController < ApplicationController
   end
 
   def names_search
-
     gender = params[:gender]
     origin1 = params[:origin1]
     origin2 = params[:origin2]
@@ -56,17 +55,14 @@ class NamesController < ApplicationController
       JOIN origins
       	ON names_origins.origin_id = origins.id
       WHERE (origins.origin = ? or origins.origin = ?) and names.gender = ?
-        and names.occurence = ? and names.length = ?",
+        and names.occurence = ? and names.length = ? LIMIT 12",
       origin1, origin2, gender, occurrence, length]
-
-      # raise
 
     render json: names
 
   end
 
   def names
-
   end
 
 
