@@ -29,7 +29,6 @@ class PagesController < ApplicationController
   end
 
   def frequency_by_name
-
     @output = ActiveRecord::Base.connection.execute("
       SELECT f.year, f.frequency
       FROM frequencies f
