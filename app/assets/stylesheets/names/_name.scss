@@ -32,7 +32,29 @@
   opacity: 0.8;
 }
 
-.fb-share-button{
 
+.similar-names-box{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  flex: 0 0 100px;
+  box-shadow: 2px 2px 4px 3px rgba(0, 0, 0, 0.04);
+  margin: 35px 10px 15px 0;
+  background-color: #F3F3F3;
+  opacity: 0.8;
+}
+.similar-names a{
+  color: #494949;
+  padding: 2px;
+  margin: 5px;
+  padding: 1rem;
+
+}
+
+
+
+.facebook{
+  text-align: right;
 }
 
