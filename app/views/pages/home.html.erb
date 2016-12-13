@@ -1,32 +1,27 @@
+<div class="wrapper-image"></div>
 
-<div class="wrapper-image">
-  <div class="container">
-    <div class="row">
-
-      <div class="col-xs-8 col-xs-offset-2 text-center">
-        <!-- <img src="images/logo2.png", width: "60px", height: "55px" > -->
-        <h1> Find the name your baby will love! </h1>
-
-        <h3> What are you expecting?</h3>
-        <br><br>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-4 col-xs-offset-4 text-center">
-        <div class="col-sm-4">
-            <a class="gender_card"
-            href="names/?gender=masculine">
-            <%= image_tag "baby-boy-transparent.png", width: "200" %>
-          </a>
-        </div>
-
-        <div class="col-sm-4">
-          <a type="button" class="gender_card" href="names/?gender=feminine">
-            <%= image_tag "baby-girl-transparent.png", width: "200" %>
-          </a>
-        </div>
-      </div>
+<div class="container nomo-home-container">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2 text-center">
+      <h1>Find the name your baby will love!</h1>
+      <h3>What are you expecting?</h3>
+      <br>
+      <br>
     </div>
   </div>
+
+  <div class="nomo-baby-container">
+
+    <a type="button" class="gender_card"
+      href="names/?gender=masculine">
+      <%= image_tag "baby-boy-transparent.png" %>
+    </a>
+
+    <a type="button" class="gender_card"
+      href="names/?gender=feminine">
+      <%= image_tag "baby-girl-transparent.png" %>
+    </a>
+
   </div>
+
+</div>
