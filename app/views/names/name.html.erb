@@ -1,9 +1,10 @@
 <div class=wrapper-image-blur-info>
+
   <% if @name.nil? %>
 
-  <div class="alert alert-danger">
-    Oh no, we cannot find that name!
-  </div>
+    <div class="alert alert-danger">
+      Oh no, we cannot find that name!
+    </div>
 
   <% else %>
 
@@ -25,14 +26,11 @@
 
     <!-- ORIGINS-->
     <div class=countries-box>
-      <%= @name.name %> is a name that is common especially in the following countries:
+      <%= @name.name %> is a name that is common especially in the following languages:
       <br>
       <div class="row" id="name-origin-all">
-
-
         <% @origins.each do |origin| %>
         <div class="col-xs-2 name-origin">
-
           <%= origin.origin %>
         </div>
         <% end %>
@@ -48,7 +46,7 @@
     </div>
 
     <!-- FREQUENCIES-->
-    <h3>Frequencies</h3>
+    <h4>Frequencies</h4>
     <div id="chart-container">
     </div>
     <script>
