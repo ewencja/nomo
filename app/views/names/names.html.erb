@@ -1,67 +1,68 @@
-<div class="row" id="names-results">
+<div class=wrapper-image-blur>
+  <div class="row" id="names-results">
 
-  <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-sm-8 col-sm-offset-2">
 
-    <form id="search-form" class="form-inline" action="javascript:App.names.refreshList()">
+      <form id="search-form" class="form-inline" action="javascript:App.names.refreshList()">
 
-      <div class="form-group">
-        <label for="origin1">Mummy's Origin</label>
-        <br>
-        <input type="text" name="origin1"
+        <div class="form-group">
+          <label for="origin1">Mummy's Origin</label>
+          <br>
+          <input type="text" name="origin1"
           type="text"
           class="form-control"
           autocomplete="off">
-      </div>
+        </div>
 
-      <div class="form-group">
-        <label for="origin2">Daddy's Origin</label>
-        <br>
-        <input type="text" name="origin2"
+        <div class="form-group">
+          <label for="origin2">Daddy's Origin</label>
+          <br>
+          <input type="text" name="origin2"
           type="text"
           class="form-control"
           autocomplete="off">
-      </div>
-
-      <div class="form-group" name="occurrence">
-        <input type="hidden" name="occurrence">
-        <label>Occurrence</label>
-        <br>
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default" value="very rare">Very rare</button>
-          <button type="button" class="btn btn-default" value="rare">Rare</button>
-          <button type="button" class="btn btn-default" value="moderate">Moderate</button>
-          <button type="button" class="btn btn-default" value="common">Common</button>
         </div>
-      </div>
 
-      <div class="form-group" name="length">
-        <input type="hidden" name="length">
-        <label>Length</label>
-        <br>
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default" value="short">Short</button>
-          <button type="button" class="btn btn-default" value="medium">Medium</button>
-          <button type="button" class="btn btn-default" value="long">Long</button>
+        <div class="form-group" name="occurrence">
+          <input type="hidden" name="occurrence">
+          <label>Occurrence</label>
+          <br>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" value="very rare">Very rare</button>
+            <button type="button" class="btn btn-default" value="rare">Rare</button>
+            <button type="button" class="btn btn-default" value="moderate">Moderate</button>
+            <button type="button" class="btn btn-default" value="common">Common</button>
+          </div>
         </div>
+
+        <div class="form-group" name="length">
+          <input type="hidden" name="length">
+          <label>Length</label>
+          <br>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" value="short">Short</button>
+            <button type="button" class="btn btn-default" value="medium">Medium</button>
+            <button type="button" class="btn btn-default" value="long">Long</button>
+          </div>
+        </div>
+
+        <input type="submit" style="display: none">
+
+      </form>
+
+      <div id="names-list">
+        <!-- Names inserted via Javascript -->
       </div>
 
-      <input type="submit" style="display: none">
-
-    </form>
-
-    <div id="names-list">
-      <!-- Names inserted via Javascript -->
     </div>
 
   </div>
 
-</div>
+  <script id="name-entry" type="x-tmpl-mustache">
+    <div class="name-card">
+      <a href="/name?name={{name.name}}">{{name.name}}</a>
 
-<script id="name-entry" type="x-tmpl-mustache">
-  <div class="name-card">
-    <a href="/name?name={{name.name}}">{{name.name}}</a>
-
-    <br/>
+      <br/>
 
     <div class="fb-share-button" data-href="https://nomonomo.herokuapp.com/name?name={{name}}" data-layout="button" data-mobile-iframe="true">
       <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnomonomo.herokuapp.com/name?name={{name.name}}%2F&amp;src=sdkpreparse">
@@ -76,34 +77,34 @@
   function initialize() {
 
     let gender = url('?gender'),
-      template = $('#name-entry').html();
+    template = $('#name-entry').html();
 
     // Bind Origin input to autocomplete
     $('#search-form [name=origin1], #search-form [name=origin2]')
-      .autocomplete({
-        source: function(request, callback) {
-          $.get({
-            url: `/origins?` + $.param({ origin: request.term }),
-            success: callback
-          });
-        },
-        minLength: 2,
-        select: refreshList
-      });
+    .autocomplete({
+      source: function(request, callback) {
+        $.get({
+          url: `/origins?` + $.param({ origin: request.term }),
+          success: callback
+        });
+      },
+      minLength: 2,
+      select: refreshList
+    });
 
     // Bind Buttons
     $('#search-form [name=occurrence] button')
-      .click(function(event) {
-        $('#search-form [name=occurrence] input').val(event.target.value);
-        refreshButtons();
-        refreshList();
-      });
+    .click(function(event) {
+      $('#search-form [name=occurrence] input').val(event.target.value);
+      refreshButtons();
+      refreshList();
+    });
     $('#search-form [name=length] button')
-      .click(function(event) {
-        $('#search-form [name=length] input').val(event.target.value);
-        refreshButtons();
-        refreshList();
-      });
+    .click(function(event) {
+      $('#search-form [name=length] input').val(event.target.value);
+      refreshButtons();
+      refreshList();
+    });
 
     Mustache.parse(template);
 
@@ -130,7 +131,7 @@
     }
 
     var reloadContentThrottled =
-      _.debounce(reloadContent, 200);
+    _.debounce(reloadContent, 200);
 
     function refreshList() {
       let queryString = $('#search-form').serialize();
@@ -140,26 +141,26 @@
 
     function refreshButtons() {
       $('#search-form [name=occurrence] button')
-        .each((i, button) => {
-          let input = $('#search-form [name=occurrence] input'),
-            state = button.value === input.val();
-          $(button).toggleClass('btn-primary', state);
-        });
+      .each((i, button) => {
+        let input = $('#search-form [name=occurrence] input'),
+        state = button.value === input.val();
+        $(button).toggleClass('btn-primary', state);
+      });
       $('#search-form [name=length] button')
-        .each((i, button) => {
-          let input = $('#search-form [name=length] input'),
-            state = button.value === input.val();
-          $(button).toggleClass('btn-primary', state);
-        });
+      .each((i, button) => {
+        let input = $('#search-form [name=length] input'),
+        state = button.value === input.val();
+        $(button).toggleClass('btn-primary', state);
+      });
     }
 
     if(/#!\?/.test(location.hash)) {
       location.hash.substring(3).split('&')
-        .map(param => param.split('='))
-        .filter(param => param[1])
-        .forEach(param => {
-          $(`input[name=${param[0]}]`).val(param[1]);
-        });
+      .map(param => param.split('='))
+      .filter(param => param[1])
+      .forEach(param => {
+        $(`input[name=${param[0]}]`).val(param[1]);
+      });
     }
     refreshButtons();
     refreshList();
@@ -179,3 +180,4 @@
   document.addEventListener('turbolinks:load', initialize);
 
 </script>
+</div>

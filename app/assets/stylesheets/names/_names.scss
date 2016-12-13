@@ -25,3 +25,12 @@
   }
 
 }
+
+.wrapper-image-blur {
+  background-image: url('bg-blur.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 92.6vh;
+  display: flex;
+  align-items: center;
+}

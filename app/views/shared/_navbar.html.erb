@@ -14,7 +14,7 @@
     <!-- Search form -->
     <!-- TODO: Design Text (grey and right distances) -->
 
-    <div class="navbar-wagon-search">
+    <div class="navbar-wagon-search" >
       <%= form_tag({:controller => "names", :action => "name"}, {:method => :get}) do %>
       <%= text_field_tag :name, nil, placeholder: "search for a name" %>
       <% end %>
