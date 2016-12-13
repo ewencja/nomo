@@ -1,73 +1,47 @@
-/* Main class */
-.navbar-wagon {
-  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: transparent;
-  transition: all 0.3s ease;
-  display: flex;
-  height: 70px;
-  padding: 0px 30px;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  z-index: 10000;
-}
+$navbar-height: 7rem;
+$navbar-padding: 1rem;
 
-/* Optional class to fix the navbar on top */
-.navbar-wagon-fixed {
+.nomo-navbar {
+
   position: fixed;
-  left: 0px;
-  top: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1;
-  width: 100%;
-}
 
-/* Navbar item */
-.navbar-wagon-item {
-  flex: 0 1 auto;
-  cursor: pointer;
-  padding: 0 20px;
-  width: 120px;
-  position: absolute;
-  right: 250px;
-  bottom: 24px;
-}
+  height: $navbar-height;
 
-/* Navbar standard link */
-.navbar-wagon-link {
-  color: #5C8AA8;
-  font-size: 14px;
-}
-.navbar-wagon-link:hover {
-  color: #1A3750;
-  text-decoration: none;
-}
+  .nomo-navbar-content {
+    display:  flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $navbar-padding;
 
-/* Navbar search form */
-.navbar-wagon-search {
-  // flex: 0 1 300px;
-  // display: flex;
-  // justify-content: flex-end;
-  // padding: 0 10px;
-  position: absolute;
-  right: 30px;
-  bottom: 20px;
-
-
-
-
-  input {
-    &::placeholder {
-      font-size: smaller;
+    a {
+      position: relative;
+      width: 7rem;
+      text-align: center;
+      border-radius: 3.5rem;
+      background: white;
+      height: 7rem;
+      img {
+        left: 4.3rem;
+        margin-top: 1rem;
+        height: $navbar-height - $navbar-padding * 2;
+      }
     }
+
+    input {
+      border-radius: 3rem;
+      padding: 1rem;
+      border: none;
+      border: 1px transparent solid;
+      &:focus {
+        outline: none;
+        border: 1px gray solid;
+      }
+    }
+
   }
 
-}
-
-.navbar-wagon-brand{
-  position: absolute;
-  top: (70px - 50px) / 2;
-  left: 70px - 50px;
-  img {
-    width: 50px;
-  }
 }

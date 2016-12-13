@@ -1,25 +1,20 @@
-
+<div class="nomo-navbar">
   <div class="container">
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2">
-        <div class="navbar-wagon">
-  <!-- Logo Placeholder -->
-        <a href="/" class="navbar-wagon-brand"
-          style="width: 2em; height: 2em; border-radius: 1em; background: white; text-align: center; line-height: 2em; color: white">
-          <%= image_tag "logo2.png", width: "60px", height: "55px" %>
-        </a>
-  <!-- Right Navigation -->
 
+        <div class="nomo-navbar-content">
 
-    <!-- <a href="" class="navbar-wagon-item navbar-wagon-link">about us</a> -->
+          <a href="/">
+            <%= image_tag "logo2.png" %>
+          </a>
 
-    <!-- Search form -->
-    <!-- TODO: Design Text (grey and right distances) -->
-        <div class="col-sm-4">
-            <%= form_tag({:controller => "names", :action => "name"}, {:method => :get}) do %>
-            <%= text_field_tag :name, nil, placeholder: "search for a name" %>
-            <% end %>
+          <%= form_tag({:controller => "names", :action => "name"}, {:method => :get}) do %>
+          <%= text_field_tag :name, nil, placeholder: "search for a name" %>
+          <% end %>
+
         </div>
+
       </div>
     </div>
   </div>
