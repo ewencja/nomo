@@ -44,7 +44,16 @@
         Share
       </a>
     </div>
-
+    <div>
+      If you like the sound of <%= @name.name %> you would most likely like:
+      <% @sample_soundex.each do |name| %>
+        <li>
+          <a class="badge" href="/name?name=<%= name['name'] %>">
+        <%= name['name'] %>
+        </a>
+        </li>
+      <% end %>
+    </div>
     <!-- FREQUENCIES-->
     <h4>Frequencies</h4>
     <div id="chart-container">
@@ -55,7 +64,5 @@
       });
     </script>
     <% end %>
-
-
   </div>
 </div>
