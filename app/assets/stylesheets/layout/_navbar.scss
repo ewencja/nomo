@@ -44,13 +44,16 @@
 
 /* Navbar search form */
 .navbar-wagon-search {
-  flex: 0 1 300px;
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 10px;
+  // flex: 0 1 300px;
+  // display: flex;
+  // justify-content: flex-end;
+  // padding: 0 10px;
   position: absolute;
   right: 30px;
   bottom: 20px;
+
+
+
 
   input {
     &::placeholder {

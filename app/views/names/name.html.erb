@@ -1,47 +1,63 @@
-<% if @name.nil? %>
+<div class=wrapper-image-blur-info>
+  <% if @name.nil? %>
 
   <div class="alert alert-danger">
     Oh no, we cannot find that name!
   </div>
 
-<% else %>
+  <% else %>
 
-  <p style="margin: 1em 0 0.5em 1em">
+  <!--  <p style="margin: 1em 0 0.5em 1em"> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 page-name">
+        <%= @name.name %>
+      </div>
+    </div>
 
-    <%= @name.name %>
-
-    (<%= @name.gender %>)
-
-    <span class="badge" style="margin-right: 1em">
+    <!--  (<%= @name.gender %>) -->
+    <!--  ADD HERE IN A ROW THE SOUNDEX NAMES -->
+   <!--  <span class="badge" style="margin-right: 1em">
       <%= @name.metaphone %>
-    </span>
+    </span> -->
+    <!--  </p> -->
 
-  </p>
 
-  <div class="fb-share-button" data-href="https://nomonomo.herokuapp.com/name?name={{name}}" data-layout="button" data-mobile-iframe="true">
-    <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnomonomo.herokuapp.com/name?name={{name.name}}%2F&amp;src=sdkpreparse">
-      Share
-    </a>
-  </div>
+    <!-- ORIGINS-->
+    <div class=countries-box>
+      <%= @name.name %> is a name that is common especially in the following countries:
+      <br>
+      <div class="row" id="name-origin-all">
 
-  <ul>
-    <% @origins.each do |origin| %>
-      <li>
-        <%= origin.origin %>
-      </li>
+
+        <% @origins.each do |origin| %>
+        <div class="col-xs-2 name-origin">
+
+          <%= origin.origin %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+
+    <!--  SHARE FACEBOOK-->
+    <div class="fb-share-button" data-href="https://nomonomo.herokuapp.com/name?name={{name}}" data-layout="button" data-mobile-iframe="true">
+      <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnomonomo.herokuapp.com/name?name={{name.name}}%2F&amp;src=sdkpreparse">
+        Share
+      </a>
+    </div>
+
+    <!-- FREQUENCIES-->
+    <h3>Frequencies</h3>
+    <div id="chart-container">
+    </div>
+    <script>
+      window.addEventListener('load', function() {
+        App.frequencies.chart('<%= @name.name %>', '#chart-container');
+      });
+    </script>
     <% end %>
-  </ul>
 
-  <h3>Frequencies</h3>
-
-  <div id="chart-container">
 
   </div>
-
-  <script>
-    window.addEventListener('load', function() {
-      App.frequencies.chart('<%= @name.name %>', '#chart-container');
-    });
-  </script>
-
-<% end %>
+</div>
