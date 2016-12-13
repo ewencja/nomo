@@ -5,6 +5,9 @@
     background-color: #EEEBF0;
     opacity: 0.9;
     padding: 3rem;
+    box-shadow: 2px 2px 4px 3px rgba(0,0,0,0.04);
+    background-color: white;
+    border-radius: 3px;
 
   }
 
@@ -17,11 +20,18 @@
 
     .name-card {
       flex: 0 0 30%;
-
       padding: 1rem;
-      text-align: center;
       box-shadow: 2px 2px 4px 3px rgba(0,0,0,0.04);
       margin: 1rem 0;
+      background-color: white;
+      border-radius: 3px;
+      padding-top: 10px;
+    }
+    .name-result a {
+      font-size: 18px;
+      font-weight: bold;
+      color: #494949 !important;
+      text-align: left;
     }
 
   }
@@ -32,10 +42,19 @@
   background-image: url('bg-blur.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 92.6vh;
   display: flex;
   align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  min-height: 92.6vh;
 }
-.input-origin{
 
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+  background-color: #AB9BB8;
+  border-color: #AB9BB8;
 }
