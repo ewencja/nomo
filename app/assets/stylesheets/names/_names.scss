@@ -3,12 +3,12 @@
   form {
 
     margin: 1rem 0;
-    background-color: #EEEBF0;
     opacity: 0.9;
     padding: 1rem;
     box-shadow: 2px 2px 4px 3px rgba(0,0,0,0.04);
     background-color: white;
     border-radius: 3px;
+    margin-top: 3rem;
 
     display: flex;
     font-size: smaller;
@@ -18,14 +18,19 @@
     .form-group {
       flex: 0 0 48%;
       &:nth-child(1), &:nth-child(2) {
-        margin-bottom: 1rem
+        margin-bottom: 1rem;
       }
     }
 
     input.form-control, .btn-group button {
-      font-size: 1rem;
+      font-size: 1.3rem;
       line-height:  2rem;
       height:  3rem;
+    }
+
+    label {
+      font-family: 'Lato';
+      font-size: 20px;
     }
 
   }
@@ -58,6 +63,7 @@
 }
 
 .wrapper-image-blur {
+  z-index: -1;
   position: fixed;
   top: 0;
   left: 0;

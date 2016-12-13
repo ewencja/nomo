@@ -4,6 +4,19 @@
   background-repeat: no-repeat;
   height: 92.6vh;
 }
+
+#name-info-container {
+
+  opacity: 0.9;
+  padding: 1rem;
+  box-shadow: 2px 2px 4px 3px rgba(0,0,0,0.04);
+  background-color: white;
+  border-radius: 3px;
+  margin-top: 4rem;
+
+}
+
+
 .page-name{
   font-size: 60px;
   font-style: bold;
@@ -51,9 +64,12 @@
 
 }
 
+.label {
+  font-family: 'Josefin Sans';
+  font-size: 15px;
+}
 
 
 .facebook{
   text-align: right;
 }
-

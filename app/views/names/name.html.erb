@@ -1,68 +1,38 @@
-<div class=wrapper-image-blur-info>
+<div class=wrapper-image-blur></div>
 
-  <% if @name.nil? %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2" id="name-info-container">
+      <% if @name.nil? %>
 
-  <div class="alert alert-danger">
-    Oh no, we cannot find that name!
-  </div>
-
-  <% else %>
-
-
-<p style="margin: 1em 0 0.5em 1em">
-
-
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 page-name">
-        <%= @name.name %>
+      <div class="alert alert-danger">
+        Oh no, we cannot find that name!
       </div>
-    </div>
 
-
-
-
-    <!-- ORIGINS-->
-
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class=countries-box>
-            <%= @name.name %> is a name that is used in the following languages:
-            <br><br>
-            <div id="name-origin-all">
-              <% @origins.each do |origin| %>
-              <div class="name-origin">
-                <%= origin.origin %>
-              </div>
-              <% end %>
-            </div>
-          </div>
+      <% else %>
+      <h1 class="text-center"><%= @name.name %></h1>
+      <%= @name.name %> is a name that is used in the following languages:
+      <br><br>
+      <div id="name-origin-all">
+        <% @origins.each do |origin| %>
+        <div class="name-origin">
+          <%= origin.origin %>
         </div>
+        <% end %>
       </div>
 
-                  <!--  SOUDNEX-->
-      <div class="row">
-        <div class="col-xs-12">
-          <div class=similar-names-box>
-            If you like <%= @name.name %>  you might also like:
-            <br>
-            <% @sample_soundex.each do |name| %>
-            <span class="similar-names">
-              <a  href="/name?name=<%= name['name'] %>">
-                <%= name['name'] %>
-              </a>
+      <div class=similar-names-box>
+        If you like <%= @name.name %>  you might also like:
+        <br>
+        <% @sample_soundex.each do |name| %>
+        <span class="similar-names">
+          <a  href="/name?name=<%= name['name'] %>">
+            <%= name['name'] %>
+          </a>
 
-            <% end %>
-            </span>
-
-          </div>
-        </div>
+        <% end %>
+        </span>
       </div>
-
-
-
-      <!-- FREQUENCIES-->
       <h4>Frequencies</h4>
       <div id="chart-container">
       </div>
@@ -82,3 +52,4 @@
       </div>
     </div>
   </div>
+</div>

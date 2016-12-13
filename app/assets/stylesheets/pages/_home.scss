@@ -3,10 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.nomo-home-container {
+  margin-top: 9rem;
+}
+
 h1 {
   font-family: 'Dancing Script', Georgia, Times, serif;
   font-size: 59px;
   line-height: 60px;
+}
+
+h3 {
+  font-family: 'Lato';
+	font-size: 25px;
+	line-height: 25px;
+	margin-top: 30px;
+  text-align: center;
 }
 
 .background_image p {
@@ -14,13 +26,6 @@ h1 {
   font-weight: lighter;
   color: black;
   margin-bottom: 20px;
-}
-
-h3 {
-  font-family: 'Josefin Sans';
-	font-size: 18px;
-	line-height: 25px;
-	margin-top: 15px;
 }
 
 select {
@@ -46,19 +51,20 @@ select {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.gender_card {
-  width: 250px;
-  border-radius: 50%;
-  background: transparent;
-  text-align: left;
-  padding-top: 20px;
+
+.nomo-baby-container {
+  display: flex;
+  justify-content: center;
 }
 
-.gender_card img{
-transition: transform 200ms;
-
-}
-
-.gender_card img:hover{
-  transform: scale(1.2);
+a.gender_card {
+  text-align: center;
+  width: 13rem;
+  img {
+    width: 10rem;
+    transition: transform 200ms;
+    &:hover{
+      transform: scale(1.2);
+    }
+  }
 }

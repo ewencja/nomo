@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   post 'names/selection'
   post 'pages/results'
   get '/reset', to: 'pages#reset_session'
-  get 'pages/home'
   get 'pages/results', to: 'pages#results'
   post 'names/name_search'
   get 'name', to: 'names#name'
