@@ -1,66 +1,74 @@
-<div class="container-fluid">
+<div class="row" id="names-results">
 
-  <form id="search-form" class="form-inline" action="javascript:App.names.refreshList()">
+  <div class="col-sm-8 col-sm-offset-2">
 
-    <div class="form-group">
-      <label for="origin1">Origin Parent 1</label>
-      <br>
-      <input type="text" name="origin1"
-        type="text"
-        class="form-control"
-        autocomplete="off">
-    </div>
+    <form id="search-form" class="form-inline" action="javascript:App.names.refreshList()">
 
-    <div class="form-group">
-      <label for="origin2">Origin Parent 2</label>
-      <br>
-      <input type="text" name="origin2"
-        type="text"
-        class="form-control"
-        autocomplete="off">
-    </div>
-
-    <div class="form-group" name="occurrence">
-      <input type="hidden" name="occurrence">
-      <label>Occurrence</label>
-      <br>
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default" value="very rare">Very rare</button>
-        <button type="button" class="btn btn-default" value="rare">Rare</button>
-        <button type="button" class="btn btn-default" value="moderate">Moderate</button>
-        <button type="button" class="btn btn-default" value="common">Common</button>
+      <div class="form-group">
+        <label for="origin1">Origin Parent 1</label>
+        <br>
+        <input type="text" name="origin1"
+          type="text"
+          class="form-control"
+          autocomplete="off">
       </div>
-    </div>
 
-    <div class="form-group" name="length">
-      <input type="hidden" name="length">
-      <label>Length</label>
-      <br>
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default" value="short">Short</button>
-        <button type="button" class="btn btn-default" value="medium">Medium</button>
-        <button type="button" class="btn btn-default" value="long">Long</button>
+      <div class="form-group">
+        <label for="origin2">Origin Parent 2</label>
+        <br>
+        <input type="text" name="origin2"
+          type="text"
+          class="form-control"
+          autocomplete="off">
       </div>
+
+      <div class="form-group" name="occurrence">
+        <input type="hidden" name="occurrence">
+        <label>Occurrence</label>
+        <br>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" value="very rare">Very rare</button>
+          <button type="button" class="btn btn-default" value="rare">Rare</button>
+          <button type="button" class="btn btn-default" value="moderate">Moderate</button>
+          <button type="button" class="btn btn-default" value="common">Common</button>
+        </div>
+      </div>
+
+      <div class="form-group" name="length">
+        <input type="hidden" name="length">
+        <label>Length</label>
+        <br>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" value="short">Short</button>
+          <button type="button" class="btn btn-default" value="medium">Medium</button>
+          <button type="button" class="btn btn-default" value="long">Long</button>
+        </div>
+      </div>
+
+      <input type="submit" style="display: none">
+
+    </form>
+
+    <div id="names-list">
+      <!-- Names inserted via Javascript -->
     </div>
 
-    <input type="submit" style="display: none">
-
-  </form>
-
-  <div id="names-list"></div>
+  </div>
 
 </div>
 
 <script id="name-entry" type="x-tmpl-mustache">
-  <div class="row">
-    <div class="col-xs-3">
-      <a href="/name?name={{name}}">{{name.name}}</a>
+  <div class="name-card">
+    <a href="/name?name={{name.name}}">{{name.name}}</a>
+
+    <br/>
+
+    <div class="fb-share-button" data-href="https://nomonomo.herokuapp.com/name?name={{name}}" data-layout="button" data-mobile-iframe="true">
+      <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnomonomo.herokuapp.com/name?name={{name.name}}%2F&amp;src=sdkpreparse">
+        Share
+      </a>
     </div>
-    <div class="col-xs-3">
-      <div class="bs-callout bs-callout-info">
-      {{name.gender}}
-      </div>
-    </div>
+
   </div>
 </script>
 
