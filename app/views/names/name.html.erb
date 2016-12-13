@@ -1,9 +1,10 @@
 <div class=wrapper-image-blur-info>
+
   <% if @name.nil? %>
 
-  <div class="alert alert-danger">
-    Oh no, we cannot find that name!
-  </div>
+    <div class="alert alert-danger">
+      Oh no, we cannot find that name!
+    </div>
 
   <% else %>
 
@@ -30,7 +31,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div class=countries-box>
-      <%= @name.name %> is a name that is common especially in the following countries:
+      <%= @name.name %> is a name that is common especially in the following languages:
       <br><br>
       <div id="name-origin-all">
 
@@ -55,9 +56,18 @@
         Share
       </a>
     </div>
-
+    <div>
+      If you like the sound of <%= @name.name %> you would most likely like:
+      <% @sample_soundex.each do |name| %>
+        <li>
+          <a class="badge" href="/name?name=<%= name['name'] %>">
+        <%= name['name'] %>
+        </a>
+        </li>
+      <% end %>
+    </div>
     <!-- FREQUENCIES-->
-    <h3>Frequencies</h3>
+    <h4>Frequencies</h4>
     <div id="chart-container">
     </div>
     <script>
@@ -66,7 +76,5 @@
       });
     </script>
     <% end %>
-
-
   </div>
 </div>
