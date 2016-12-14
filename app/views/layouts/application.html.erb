@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Nomo</title>
-
   <meta name="description" content="<%= meta_description %>">
   <!-- Facebook Open Graph data -->
   <meta property="og:title" content="<%= meta_title %>" />
@@ -25,6 +24,11 @@
   <meta itemprop="description" content="<%= meta_description %>">
   <meta itemprop="image" content="<%= image_url(meta_image) %>">
 
+  <link rel="icon"
+  type="image/png"
+  href="<%= image_path 'logo_favicon.png' %>">
+
+
 
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -35,6 +39,12 @@
 
   <%= csrf_meta_tags %>
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 189c0db4b22e4c26ef68337576f379703392303d
 </head>
 
 <body>
