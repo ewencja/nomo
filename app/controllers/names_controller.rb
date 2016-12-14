@@ -15,8 +15,8 @@ class NamesController < ApplicationController
       @sample_soundex = Name.find_by_sql("SELECT b.name
         FROM names a
         JOIN NAMES b
-        ON left(a.name, 1) = left(b.name, 1) and right(a.name, 1) = right(b.name, 1) and length(a.metaphone) = length(b.metaphone)
-        WHERE a.name = '#{@name.name}' LIMIT 8")
+        ON left(a.name, 1) = left(b.name, 1) and right(a.name, 1) = right(b.name, 1) and length(a.metaphone) = length(b.metaphone) and a.gender = b.gender
+        WHERE a.name = '#{@name.name}'")
     # Variant with origins selected for soundex
       # @sample_soundex_origins = Name.find_by_sql("SELECT b.name, o.origin, b.gender
       #   FROM names
