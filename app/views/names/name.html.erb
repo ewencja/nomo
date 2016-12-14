@@ -15,8 +15,12 @@
       <br><br>
       <div id="name-origin-all">
         <% @origins.each do |origin| %>
+
         <div class="name-origin">
-          <%= origin.origin %>
+          <div class="flag-icon-<%=origin.origin%> name-flag"></div>
+          <div>
+            <%= origin.origin %>
+          </div>
         </div>
         <% end %>
       </div>
@@ -30,7 +34,7 @@
             <%= name['name'] %>
           </a>
 
-        <% end %>
+          <% end %>
         </span>
       </div>
       <h4>Frequencies</h4>
