@@ -1,0 +1,31 @@
+<h1 class="text-center"><%= @name.name %></h1>
+<%= @name.name %> is a name that is used in the following languages:
+<br><br>
+<div id="name-origin-all">
+  <% @origins.each do |origin| %>
+  <div class="name-origin">
+    <%= origin.origin %>
+  </div>
+  <% end %>
+</div>
+
+<div class=similar-names-box>
+  If you like <%= @name.name %>  you might also like:
+  <br>
+  <% @sample_soundex.each do |name| %>
+  <span class="similar-names">
+    <a  href="/name?name=<%= name['name'] %>">
+      <%= name['name'] %>
+    </a>
+
+  <% end %>
+  </span>
+</div>
+<h4>Frequencies</h4>
+<div id="chart-container">
+</div>
+<script>
+  window.addEventListener('load', function() {
+    App.frequencies.chart('<%= @name.name %>', '#chart-container');
+  });
+</script>

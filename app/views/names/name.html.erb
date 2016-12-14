@@ -10,6 +10,7 @@
       </div>
 
       <% else %>
+
       <h1 class="text-center"><%= @name.name %></h1>
       <%= @name.name %> is a name that is used in the following languages:
       <br><br>
@@ -45,6 +46,7 @@
           App.frequencies.chart('<%= @name.name %>', '#chart-container');
         });
       </script>
+
       <% end %>
 
 
@@ -53,6 +55,7 @@
         <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnomonomo.herokuapp.com/name?name={{name.name}}%2F&amp;src=sdkpreparse">
           <i class="fa fa-facebook-official  fa-2x" aria-hidden="true"></i>
         </a>
+        <%= link_to "Back", :back %>
       </div>
     </div>
   </div>

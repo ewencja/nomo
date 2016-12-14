@@ -98,13 +98,18 @@ function register() {
     onChange(template);
   });
 
+
+
   refreshButtons();
   refreshList(template);
 
 }
 
 
-
+function openNameModal() {
+  var template = $('#nameModalTemplate')
+  console.log('openNameModal')
+}
 
 
 (function() {
@@ -112,7 +117,8 @@ function register() {
   this.App || (this.App = {});
 
   App.names = App.names || {
-    register: register
+    register: register,
+    openNameModal: openNameModal
   }
 
 }).call(this);
