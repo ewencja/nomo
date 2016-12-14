@@ -43,6 +43,7 @@
   margin: 10px 10px 0 0;
   background-color: #F3F3F3;
   opacity: 0.8;
+  display: flex;
 }
 
 .similar-names-box{
@@ -72,4 +73,12 @@
 
 .facebook{
   text-align: right;
+}
+
+.name-flag {
+      width: 20px;
+    height: 20px;
+    background-size: cover;
+    margin-right: 10px;
+    margin-top: 2px;
 }
