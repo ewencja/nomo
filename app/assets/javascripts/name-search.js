@@ -12,6 +12,10 @@ function renderList(template, names) {
 
 var lastRequest;
 
+function serializeForm() {
+  return $('#search-form').serialize().replace('+', ' ');
+}
+
 function reloadContent(template, queryString) {
   var gender = url('?gender');
   if(lastRequest) {
@@ -27,7 +31,7 @@ var reloadContentThrottled =
   _.debounce(reloadContent, 200);
 
 function refreshList(template) {
-  var queryString = $('#search-form').serialize();
+  var queryString = serializeForm();
   reloadContent(template, queryString);
 }
 
@@ -47,19 +51,32 @@ function refreshButtons() {
 }
 
 function onChange(template) {
-  var queryString = $('#search-form').serialize();
-  location.hash = '!?' + queryString;
+  var gender = url('?gender');
+  var queryString = serializeForm();
+  location.search = '?gender=' + gender + '&' + queryString;
   refreshButtons();
   refreshList(template);
 }
 
-if(/#!\?/.test(location.hash)) {
-  location.hash.substring(3).split('&')
-  .map(function(param) { return param.split('=') })
-  .filter(function(param) { return param[1] })
-  .forEach(function(param) {
-    $('input[name=' + param[0] + ']').val(param[1]);
-  });
+if(/\?/.test(location.search)) {
+  location.search
+    .substring(1)
+    .split('&')
+    .map(function(param) {
+      return param.split('=');
+    })
+    .map(function(param) {
+      param[0].replace(' ', '+');
+      param[1] = decodeURI(param[1]);
+      return param;
+    })
+    .filter(function(param) {
+      return param[1];
+    })
+    .forEach(function(param) {
+      console.log(param[0], param[1]);
+      $('input[name=' + param[0] + ']').val(param[1]);
+    });
 }
 
 
@@ -88,15 +105,15 @@ function register() {
 
   // Bind Buttons
   $('#search-form [name=occurrence] button')
-  .click(function(event) {
-    $('#search-form [name=occurrence] input').val(event.target.value);
-    onChange(template);
-  });
+    .click(function(event) {
+      $('#search-form [name=occurrence] input').val(event.target.value);
+      onChange(template);
+    });
   $('#search-form [name=length] button')
-  .click(function(event) {
-    $('#search-form [name=length] input').val(event.target.value);
-    onChange(template);
-  });
+    .click(function(event) {
+      $('#search-form [name=length] input').val(event.target.value);
+      onChange(template);
+    });
 
 
 
