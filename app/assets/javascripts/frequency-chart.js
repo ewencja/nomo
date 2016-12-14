@@ -1,6 +1,6 @@
 function chart(name, elementRef) {
 
-  let chartOptions = {
+  var chartOptions = {
     axisX: {
       scaleMinSpace: 200
     }
@@ -9,10 +9,14 @@ function chart(name, elementRef) {
   function showChart(points) {
     window.points = points;
     var data = {
-      labels: points.map(point => point.year),
+      labels: points.map(function(point) {
+        return point.year
+      }),
       series: [
         {
-          data: points.map(point => point.frequency)
+          data: points.map(function(point) {
+            return point.frequency
+          })
         }
       ]
     };
@@ -20,7 +24,7 @@ function chart(name, elementRef) {
   }
 
   $.get({
-    url: `/frequency/${name}`,
+    url: '/frequency/' + name,
     success: showChart
   });
 

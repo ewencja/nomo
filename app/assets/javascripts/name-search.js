@@ -2,7 +2,9 @@ function renderList(template, names) {
   var rendered = names.map(function(name) {
     return Mustache.render(template, {
       name: name,
-      origins: name.origin.map(origin => origin.origin)
+      origins: name.origin.map(function(origin) {
+        origin.origin
+      })
     });
   }).join('');
   $('#names-list').html(rendered);
@@ -11,12 +13,12 @@ function renderList(template, names) {
 var lastRequest;
 
 function reloadContent(template, queryString) {
-  let gender = url('?gender');
+  var gender = url('?gender');
   if(lastRequest) {
     lastRequest.abort();
   }
   lastRequest = $.get({
-    url: `/names/${gender}?${queryString}`,
+    url: '/names/' + gender + '?' + queryString,
     success: renderList.bind(undefined, template)
   });
 }
@@ -25,27 +27,27 @@ var reloadContentThrottled =
   _.debounce(reloadContent, 200);
 
 function refreshList(template) {
-  let queryString = $('#search-form').serialize();
+  var queryString = $('#search-form').serialize();
   reloadContent(template, queryString);
 }
 
 function refreshButtons() {
   $('#search-form [name=occurrence] button')
-  .each((i, button) => {
-    let input = $('#search-form [name=occurrence] input'),
+  .each(function(i, button) {
+    var input = $('#search-form [name=occurrence] input'),
     state = button.value === input.val();
     $(button).toggleClass('btn-primary', state);
   });
   $('#search-form [name=length] button')
-  .each((i, button) => {
-    let input = $('#search-form [name=length] input'),
+  .each(function(i, button) {
+    var input = $('#search-form [name=length] input'),
     state = button.value === input.val();
     $(button).toggleClass('btn-primary', state);
   });
 }
 
 function onChange(template) {
-  let queryString = $('#search-form').serialize();
+  var queryString = $('#search-form').serialize();
   location.hash = '!?' + queryString;
   refreshButtons();
   refreshList(template);
@@ -53,10 +55,10 @@ function onChange(template) {
 
 if(/#!\?/.test(location.hash)) {
   location.hash.substring(3).split('&')
-  .map(param => param.split('='))
-  .filter(param => param[1])
-  .forEach(param => {
-    $(`input[name=${param[0]}]`).val(param[1]);
+  .map(function(param) { param.split('=') })
+  .filter(function(param) { param[1] })
+  .forEach(function(param) {
+    $('input[name=' + param[0] + ']').val(param[1]);
   });
 }
 
@@ -67,7 +69,7 @@ function register() {
 
   console.log('register');
 
-  let template = $('#name-entry').html();
+  var template = $('#name-entry').html();
 
   Mustache.parse(template);
 
@@ -76,7 +78,7 @@ function register() {
   .autocomplete({
     source: function(request, callback) {
       $.get({
-        url: `/origins?` + $.param({ origin: request.term }),
+        url: '/origins?' + $.param({ origin: request.term }),
         success: callback
       });
     },
