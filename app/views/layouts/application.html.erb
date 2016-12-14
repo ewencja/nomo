@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Nomo</title>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato:300i" rel="stylesheet">
-    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.10.1/chartist.min.css' %>
-    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css' %>
+<head>
+  <title>Nomo</title>
+  <link rel="icon"
+  type="image/png"
+  href="<%= image_path 'logo_favicon.png' %>">
 
-    <%= csrf_meta_tags %>
 
-  </head>
 
-  <body>
-    <%= render "shared/navbar" %>
-    <%= yield %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Lato:300i" rel="stylesheet">
+  <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.10.1/chartist.min.css' %>
+  <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css' %>
 
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+  <%= csrf_meta_tags %>
 
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.10.1/chartist.min.js' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/js-url/2.3.1/url.min.js' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js' %>
-  </body>
+
+
+
+</head>
+
+<body>
+  <%= render "shared/navbar" %>
+  <%= yield %>
+
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.10.1/chartist.min.js' %>
+  <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/js-url/2.3.1/url.min.js' %>
+  <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js' %>
+  <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js' %>
+</body>
 </html>
