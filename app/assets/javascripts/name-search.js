@@ -55,8 +55,8 @@ function onChange(template) {
 
 if(/#!\?/.test(location.hash)) {
   location.hash.substring(3).split('&')
-  .map(function(param) { param.split('=') })
-  .filter(function(param) { param[1] })
+  .map(function(param) { return param.split('=') })
+  .filter(function(param) { return param[1] })
   .forEach(function(param) {
     $('input[name=' + param[0] + ']').val(param[1]);
   });
@@ -112,7 +112,7 @@ function register() {
   this.App || (this.App = {});
 
   App.names = App.names || {
-    register: _.once(register)
+    register: register
   }
 
 }).call(this);

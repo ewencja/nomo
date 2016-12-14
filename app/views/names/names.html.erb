@@ -86,7 +86,10 @@
 
     console.log('load page')
 
-    App.names.register();
+    if($('#names-results').size() !== 0 && !$('#names-results').data('registered')) {
+      App.names.register();
+      $('#names-results').data('registered', true);
+    }
 
   });
 
