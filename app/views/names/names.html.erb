@@ -1,5 +1,8 @@
-<div class=wrapper-image-blur></div>
-
+<% if params[:gender] == "feminine"%>
+<div class=wrapper-image-blur-feminine></div>
+<% else %>
+<div class=wrapper-image-blur-masculine></div>
+<% end %>
 <div class="container">
   <div class="row" id="names-results">
 
