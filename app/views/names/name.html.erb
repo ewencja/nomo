@@ -1,7 +1,7 @@
-<% if params[:gender] == "feminine"%>
-<div class=wrapper-image-blur-feminine></div>
+<% if @name.gender == "feminine"%>
+  <div class=wrapper-image-blur-feminine></div>
 <% else %>
-<div class=wrapper-image-blur-masculine></div>
+  <div class=wrapper-image-blur-masculine></div>
 <% end %>
 
 <div class="container">
@@ -71,11 +71,13 @@
             });
           </script>
           <% end %>
+        </div>
       </div>
-    </div>
 
-      <!--  SHARE FACEBOOK-->
-      <%= link_to "Back", :back %>
+      <div class="col-xs-12 text-center">
+        <br>
+        <%= link_to "Back", :back %>
+      </div>
 
       </div>
     </div>
