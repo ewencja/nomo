@@ -2,7 +2,7 @@ function chart(name, elementRef) {
 
   var chartOptions = {
     axisX: {
-      scaleMinSpace: 200
+      scaleMinSpace: 1000
     }
   }
 
