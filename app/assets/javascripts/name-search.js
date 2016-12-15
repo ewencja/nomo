@@ -47,6 +47,12 @@ function refreshButtons() {
     state = button.value === input.val();
     $(button).toggleClass('btn-primary', state);
   });
+  $('#search-form [name=join] button')
+  .each(function(i, button) {
+    var input = $('#search-form [name=join] input'),
+    state = button.value === input.val();
+    $(button).toggleClass('btn-primary', state);
+  });
 }
 
 function onChange(template) {
