@@ -12,47 +12,58 @@
       <h3>Let us know about your preferences</h3>
       <form id="search-form"  action="javascript:App.names.refreshList()">
 
-        <div class="form-group">
-          <label for="origin1">Mummy's Origin</label>
-          <br>
-          <input type="text" name="origin1"
-            type="text"
-            class="form-control"
-            autocomplete="off">
-        </div>
+        <div class="parents text-center">
+          <div class="parent">
+            <%= image_tag "farmer.png", width: "100px"%>
 
-        <div class="form-group" name="occurrence">
-          <input type="hidden" name="occurrence">
-          <label>Occurrence</label>
-          <br>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" value="very rare">Very rare</button>
-            <button type="button" class="btn btn-default" value="rare">Rare</button>
-            <button type="button" class="btn btn-default" value="moderate">Moderate</button>
-            <button type="button" class="btn btn-default" value="common">Common</button>
+            <input type="text" name="origin1" placeholder="Dad's origin"
+              type="text"
+              class="form-control"
+              autocomplete="off">
+          </div>
+          <div class="and-or"name="join">
+            <input type="hidden" name="join">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default" value="and">AND</button>
+              <button type="button" class="btn btn-default" value="or">OR</button>
+            </div>
+          </div>
+          <div class="parent">
+            <%= image_tag "doctor.png", width: "100px"%>
+
+            <input type="text" name="origin2" placeholder="Mum's origin"
+              type="text"
+              class="form-control"
+              autocomplete="off">
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="origin2">Daddy's Origin</label>
-          <br>
-          <input type="text" name="origin2"
-            type="text"
-            class="form-control"
-            autocomplete="off">
-        </div>
+        <div class="preferences text-center">
 
-        <div class="form-group" name="length">
-          <input type="hidden" name="length">
-          <label>Length</label>
-          <br>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" value="short">Short</button>
-            <button type="button" class="btn btn-default" value="medium">Medium</button>
-            <button type="button" class="btn btn-default" value="long">Long</button>
+          <div class="form-grouping" name="occurrence">
+            <input type="hidden" name="occurrence">
+            <label>Occurrence</label>
+            <br>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default" value="very rare">Very rare</button>
+              <button type="button" class="btn btn-default" value="rare">Rare</button>
+              <button type="button" class="btn btn-default" value="moderate">Moderate</button>
+              <button type="button" class="btn btn-default" value="common">Common</button>
+            </div>
           </div>
-        </div>
 
+          <div class="form-grouping" name="length">
+            <input type="hidden" name="length">
+            <label>Length</label>
+            <br>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default" value="short">Short</button>
+              <button type="button" class="btn btn-default" value="medium">Medium</button>
+              <button type="button" class="btn btn-default" value="long">Long</button>
+            </div>
+          </div>
+
+        </div>
         <input type="submit" style="display: none">
 
       </form>

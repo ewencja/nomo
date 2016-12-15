@@ -1,12 +1,11 @@
 function renderList(template, names) {
+  console.log('render', names)
   var rendered = names.map(function(name) {
     return Mustache.render(template, {
-      name: name,
-      origins: name.origin.map(function(origin) {
-        origin.origin
-      })
+      name: name
     });
   }).join('');
+  console.log('rendered', rendered)
   $('#names-list').html(rendered);
 }
 
@@ -74,7 +73,6 @@ if(/\?/.test(location.search)) {
       return param[1];
     })
     .forEach(function(param) {
-      console.log(param[0], param[1]);
       $('input[name=' + param[0] + ']').val(param[1]);
     });
 }
@@ -83,8 +81,6 @@ if(/\?/.test(location.search)) {
 
 
 function register() {
-
-  console.log('register');
 
   var template = $('#name-entry').html();
 
@@ -104,6 +100,11 @@ function register() {
   });
 
   // Bind Buttons
+  $('#search-form [name=join] button')
+    .click(function(event) {
+      $('#search-form [name=join] input').val(event.target.value);
+      onChange(template);
+    });
   $('#search-form [name=occurrence] button')
     .click(function(event) {
       $('#search-form [name=occurrence] input').val(event.target.value);
@@ -125,7 +126,6 @@ function register() {
 
 function openNameModal() {
   var template = $('#nameModalTemplate')
-  console.log('openNameModal')
 }
 
 

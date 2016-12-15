@@ -17,16 +17,6 @@ class NamesController < ApplicationController
         JOIN NAMES b
         ON left(a.name, 1) = left(b.name, 1) and right(a.name, 1) = right(b.name, 1) and length(a.metaphone) = length(b.metaphone) and a.gender = b.gender
         WHERE a.name = '#{@name.name}'")
-    # Variant with origins selected for soundex
-      # @sample_soundex_origins = Name.find_by_sql("SELECT b.name, o.origin, b.gender
-      #   FROM names
-      #   JOIN names_origins
-  	  #   ON names_origins.name_id = names.id
-      #   JOIN origins
-  	  #   ON names_origins.origin_id = origins.id
-      #   JOIN names b
-  	  #   ON left(names.name, 1) = left(b.name, 1) and right(names.name, 1) = right(b.name, 1) and length(names.metaphone) = length(b.metaphone) and names.gender = b.gender
-      #   WHERE (origins.origin = 'German' or origins.origin = 'Polish') and names.gender = 'feminine' and (names.name = '#{@name.name}'")
     end
   end
 
@@ -37,16 +27,39 @@ class NamesController < ApplicationController
     occurrence = params[:occurrence]
     length = params[:length]
 
-    names = Name.find_by_sql [
-      "SELECT names.*, origins.*
-      FROM names
-      JOIN names_origins
-      	ON names_origins.name_id = names.id
-      JOIN origins
-      	ON names_origins.origin_id = origins.id
-      WHERE (origins.origin = ? or origins.origin = ?) and names.gender = ?
-        and names.occurence = ? and names.length = ? LIMIT 15",
-      origin1, origin2, gender, occurrence, length]
+    if params[:join] == "or"
+      names = Name.find_by_sql [
+        "SELECT names.*, origins.*
+        FROM names
+        JOIN names_origins
+        	ON names_origins.name_id = names.id
+        JOIN origins
+        	ON names_origins.origin_id = origins.id
+        WHERE (origins.origin = ? or origins.origin = ?) and names.gender = ?
+          and names.occurence = ? and names.length = ?",
+        origin1, origin2, gender, occurrence, length]
+    else
+      names = Name.find_by_sql [
+        "SELECT distinct names.name, names.* FROM names
+
+        JOIN names_origins
+        	ON names_origins.name_id = names.id
+        JOIN origins
+        	ON names_origins.origin_id = origins.id
+
+        WHERE name in (
+  	        SELECT name FROM (SELECT names.name, COUNT(origins.origin) count
+      		  FROM names
+      		  JOIN names_origins
+      			   ON names_origins.name_id = names.id
+      		  JOIN (
+              SELECT * FROM origins WHERE origins.origin = ? or origins.origin = ?) origins
+        			   ON names_origins.origin_id = origins.id
+        		  WHERE names.gender = ? and names.occurence = ? and names.length = ?
+        		  GROUP BY names.name) names
+            WHERE count = 2)",
+        origin1, origin2, gender, occurrence, length]
+    end
 
     render json: names
   end
