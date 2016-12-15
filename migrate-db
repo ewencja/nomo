@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -o verbose
+
+pg_dump -U ewa -W -F t nomo_development > backup.tar
+pg_restore --verbose --clean --no-acl --no-owner -h ec2-54-75-231-85.eu-west-1.compute.amazonaws.com -U qetrhdgbnnuqst -d d9meqltj0tf36c backup.tar
+rm backup.tar
