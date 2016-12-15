@@ -69,7 +69,7 @@
           <div id="chart-container">
           </div>
           <script>
-            window.addEventListener('load', function() {
+            document.addEventListener('turbolinks:load', function() {
               App.frequencies.chart('<%= @name.name %>', '#chart-container');
             });
           </script>
@@ -77,12 +77,6 @@
         </div>
       </div>
 
-      <script>
-        window.addEventListener('load', function() {
-          App.frequencies.chart('<%= @name.name %>', '#chart-container');
-        });
-      </script>
-      
       <div class="col-xs-12 text-center">
         <br>
         <%= link_to "Back", :back %>
