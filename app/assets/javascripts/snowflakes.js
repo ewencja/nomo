@@ -1,5 +1,7 @@
 var intervals = [];
 
+console.log('import snoflakes');
+
 function startMagic(icon, color) {
 
   function create() {
