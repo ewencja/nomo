@@ -43,7 +43,9 @@ function stopMagic() {
 
   this.App || (this.App = {});
 
-  App.startMagic = startMagic;
-  App.stopMagic = stopMagic;
+  App.magic = App.magic || {
+    start: startMagic,
+    stop: stopMagic
+  };
 
 }).call(this);
