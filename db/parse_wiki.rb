@@ -117,7 +117,7 @@ end
 def simplify_genders(genders)
 
   if genders.include?('masculine') && genders.include?('feminine')
-    return 'unisex'
+    return 'feminine'
   end
 
   return genders[0];
