@@ -36,7 +36,7 @@ class NamesController < ApplicationController
         JOIN origins
         	ON names_origins.origin_id = origins.id
         WHERE (origins.origin = ? or origins.origin = ?) and names.gender = ?
-          and names.occurence = ? and names.length = ?",
+          and names.occurence = ? and names.length = ? LIMIT 15",
         origin1, origin2, gender, occurrence, length]
     else
       names = Name.find_by_sql [
@@ -57,7 +57,7 @@ class NamesController < ApplicationController
         			   ON names_origins.origin_id = origins.id
         		  WHERE names.gender = ? and names.occurence = ? and names.length = ?
         		  GROUP BY names.name) names
-            WHERE count = 2)",
+            WHERE count = 2) LIMIT 15",
         origin1, origin2, gender, occurrence, length]
     end
 
