@@ -2,7 +2,6 @@ require 'text'
 require_relative 'parse_wiki'
 require_relative 'parse_us_census'
 
-
 Origin.destroy_all
 Frequency.destroy_all
 Name.destroy_all
@@ -43,6 +42,20 @@ wiki_names.each do |name|
     origin_lookup[origin]
   end
 
+  if name['name'] == "Susanne"
+    description = "Derived from the Hebrew Soshana, a derivative of shōshannāh and means lily or a rose."
+  elsif name['name'] == "Grete"
+    description = "Short form of Margarete. From the Greek Margarītēs, which is derived from maragon (a pearl)."
+  elsif name['name'] == "Marcelino"
+    description = "Form of the Latin Marcellus. The meaning of the name is Young Warrior."
+  elsif name['name'] == "Helton"
+    description = "A surname of Anglo-Saxon origin. It is derived from the family that lived in the village of Elton in Cheshire, England. The motto is Artibus et armis."
+  elsif name['name'] == "Grace"
+    description = "Inspired by grace (eloquence or beauty of form, kindness, mercy, favor), which is derived from the Latin gratia (favor, thanks). The name was made popular by 17th-century Puritans, who bestowed it in reference to God's favor and love toward mankind."
+  elsif name['name'] == "Alan"
+    description = "A Celtic  name. In Celtic the meaning of the name is: Harmony, stone, or noble. Also fair and handsome. Originally a saint's name, it was reintroduced to Britain during the Norman Conquest."
+  end
+
   if name['name'].length > 8
     length =  'long'
   elsif name['name'].length > 4
@@ -58,7 +71,8 @@ wiki_names.each do |name|
     metaphone: Text::Metaphone.metaphone(name['name']),
     double_metaphone: Text::Metaphone.double_metaphone(name['name']),
     origin: origins,
-    length: length
+    length: length,
+    description: description
   }
 
 end

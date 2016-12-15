@@ -45,7 +45,7 @@ class NamesController < ApplicationController
       JOIN origins
       	ON names_origins.origin_id = origins.id
       WHERE (origins.origin = ? or origins.origin = ?) and names.gender = ?
-        and names.occurence = ? and names.length = ? LIMIT 12",
+        and names.occurence = ? and names.length = ? LIMIT 15",
       origin1, origin2, gender, occurrence, length]
 
     render json: names

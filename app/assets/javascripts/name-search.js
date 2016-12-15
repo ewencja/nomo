@@ -99,7 +99,7 @@ function register() {
         success: callback
       });
     },
-    minLength: 2,
+    minLength: 1,
     select: onChange.bind(undefined, template)
   });
 

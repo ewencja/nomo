@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209162121) do
+ActiveRecord::Schema.define(version: 20161215112939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
+  enable_extension "fuzzystrmatch"
 
   create_table "frequencies", force: :cascade do |t|
     t.integer  "year"
@@ -30,10 +32,12 @@ ActiveRecord::Schema.define(version: 20161209162121) do
     t.string   "soundex"
     t.string   "metaphone"
     t.string   "double_metaphone"
+    t.string   "length"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "length"
     t.string   "occurence"
+    t.string   "description"
+    t.index ["name"], name: "index_names_on_name", using: :btree
   end
 
   create_table "names_origins", id: false, force: :cascade do |t|
