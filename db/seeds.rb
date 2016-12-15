@@ -2,9 +2,7 @@ require 'text'
 require_relative 'parse_wiki'
 require_relative 'parse_us_census'
 
-Origin.destroy_all
-Frequency.destroy_all
-Name.destroy_all
+ActiveRecord::Base.connection.execute("TRUNCATE NAMES, FREQUENCIES, ORIGINS RESTART IDENTITY")
 
 puts "Parsing wiki data"
 wiki_names = parse_wiki(ARGV[1]) # [{ name: Ewa, origins: [French, Polish], ... }]
