@@ -5,9 +5,17 @@
 
         <div class="nomo-navbar-content">
 
-          <a href="/">
-            <%= image_tag "logo2.png" %>
-          </a>
+          <div class=logo>
+            <a href="/">
+              <%= image_tag "logo2.png" %>
+            </a>
+          </div>
+
+    <!--       <div class="snowflakes">
+            <a href="snowflakes">
+              <%= image_tag "snowflakes.png" %>
+            </a>
+          </div> -->
 
           <%= form_tag({:controller => "names", :action => "name"}, {:method => :get}) do %>
           <%= text_field_tag :name, nil, placeholder: "search for a name" %>

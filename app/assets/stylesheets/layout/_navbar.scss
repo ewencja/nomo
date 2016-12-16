@@ -17,7 +17,7 @@ $navbar-padding: 1rem;
     align-items: center;
     padding: $navbar-padding;
 
-    a {
+    .logo {
       position: relative;
       width: 7rem;
       text-align: center;
@@ -31,17 +31,26 @@ $navbar-padding: 1rem;
       }
     }
 
-    input {
-      border-radius: 3rem;
-      padding: 1rem;
-      border: none;
-      border: 1px transparent solid;
-      &:focus {
-        outline: none;
-        border: 1px gray solid;
-      }
-    }
+    .snowflakes{
+      left: 200px;
+      background: transparent !important;
+      margin-left: 300px;
+      img{
+       height: 40px;
+     }
+   }
 
+   input {
+    border-radius: 3rem;
+    padding: 1rem;
+    border: none;
+    border: 1px transparent solid;
+    &:focus {
+      outline: none;
+      border: 1px gray solid;
+    }
   }
+
+}
 
 }
